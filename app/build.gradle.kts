@@ -4,6 +4,7 @@ plugins {
     id("com.google.devtools.ksp")
     id("kotlin-parcelize")
     alias(libs.plugins.googleAndroidLibrariesMapsplatformSecretsGradlePlugin)
+    alias(libs.plugins.googleServices)
 }
 
 android {
@@ -55,6 +56,14 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.play.services.maps)
+    implementation(libs.firebase.auth)
+    implementation(libs.play.services.auth)
+
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
+
+    implementation(libs.firebase.auth)
     testImplementation(libs.junit)
     implementation(libs.androidx.fragment.ktx)
     androidTestImplementation(libs.androidx.junit)
