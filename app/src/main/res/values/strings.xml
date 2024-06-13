@@ -62,4 +62,6 @@
     <string name="order_received">Pesanan diterima</string>
     <string name="order_detail">Detail Pesanan</string>
     <string name="price">Rp 16.000</string>
+    <string name="total">Total:</string>
+    <string name="restaurant_location">Lokasi</string>
 </resources>

@@ -86,13 +86,13 @@
             style="@style/DetailOrderTvLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Cek lokasi"
+            android:text="@string/restaurant_location"
             app:layout_constraintStart_toStartOf="@id/tv_order_id"
             app:layout_constraintTop_toBottomOf="@id/tv_address"/>
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/maps"
-            android:name="com.example.kenyang.ui.fragments.MapsFragment"
+            android:id="@+id/fragment_maps"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="207dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -106,9 +106,9 @@
             style="@style/DetailOrderTvTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Total:"
+            android:text="@string/total"
             app:layout_constraintStart_toStartOf="@id/tv_order_id"
-            app:layout_constraintTop_toBottomOf="@id/maps"/>
+            app:layout_constraintTop_toBottomOf="@id/fragment_maps"/>
 
         <TextView
             android:id="@+id/tv_price"
@@ -116,11 +116,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/price"
-            app:layout_constraintEnd_toEndOf="@id/maps"
+            app:layout_constraintEnd_toEndOf="@id/fragment_maps"
             app:layout_constraintTop_toTopOf="@id/tv_total"/>
 
         <Button
-            android:id="@+id/fab"
+            android:id="@+id/button_send"
             android:layout_width="304dp"
             android:layout_height="49dp"
             android:background="@drawable/button"

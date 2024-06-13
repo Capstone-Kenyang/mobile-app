@@ -143,6 +143,8 @@
         <item name="android:textColor">@color/black_2</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginTop">11.5dp</item>
+        <item name="android:paddingTop">1dp</item>
+        <item name="android:paddingBottom">1dp</item>
         <item name="android:background">@drawable/accent_rounded_grey</item>
     </style>
 
@@ -175,7 +177,9 @@
     <style name="DetailOrderTvLocation">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/blue_800</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
     </style>
 
     <style name="DetailOrderTvTotal">

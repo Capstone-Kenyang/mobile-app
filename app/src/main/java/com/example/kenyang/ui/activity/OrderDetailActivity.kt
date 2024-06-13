@@ -12,6 +12,7 @@ import com.example.kenyang.R
 import com.example.kenyang.data.dataclass.Menu
 import com.example.kenyang.data.dataclass.Order
 import com.example.kenyang.databinding.ActivityOrderDetailBinding
+import com.example.kenyang.ui.fragments.MapsFragment
 
 class OrderDetailActivity : AppCompatActivity() {
 
@@ -36,6 +37,13 @@ class OrderDetailActivity : AppCompatActivity() {
         binding.tvAddress.text = order.menu.restaurantAddress
         binding.tvPrice.text = order.menu.price.toString()
 
+        val lat = order.menu.lat
+        val lon = order.menu.lon
+
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        val mapFragment = MapsFragment.newInstance(lat, lon)
+        fragmentTransaction.replace(R.id.fragment_maps, mapFragment)
+        fragmentTransaction.commit()
     }
 
     companion object {

@@ -38,101 +38,102 @@ class OrderActivity : AppCompatActivity() {
     private fun makeList(): List<Order> {
         return listOf(
             Order(
-                id = "O001",
-                imageId = R.drawable.a1, // Menggunakan drawable a1
+                id = "MX123-AWU80",
+                imageId = R.drawable.a1,
                 menu = Menu(
-                    menuId = "M001",
+                    menuId = "1",
                     imageId = R.drawable.a1,
-                    menu = "Classic Burger",
-                    restaurant = "Burger Palace",
+                    menu = "Pempek",
+                    restaurant = "Pempek Beringin",
                     restaurantId = 101,
-                    restaurantAddress = "Jl. Sudirman No.123, Palembang",
-                    lat = -2.990934,
-                    lon = 104.756554,
+                    restaurantAddress = "Jl. Dr. M. Isa No.40, Palembang",
+                    lat = -2.980122,
+                    lon = 104.737580,
                     stock = 50,
                     rating = 4.5,
-                    distance = 2.4,
-                    price = 7999
+                    distance = 1.2,
+                    price = 15000
                 ),
-                status = "Diproses" // Status diubah menjadi "Diproses"
+                status = "Diproses"
             ),
             Order(
-                id = "O002",
-                imageId = R.drawable.a2, // Menggunakan drawable a2
+                id = "AWU80-MX123",
+                imageId = R.drawable.a2,
                 menu = Menu(
-                    menuId = "M002",
+                    menuId = "2",
                     imageId = R.drawable.a2,
-                    menu = "Pepperoni Pizza",
-                    restaurant = "Pizza Heaven",
+                    menu = "Mie Celor",
+                    restaurant = "Mie Celor 26 Ilir H.M. Syafei Z",
                     restaurantId = 102,
-                    restaurantAddress = "Jl. Rajawali No.456, Palembang",
-                    lat = -2.973717,
-                    lon = 104.739709,
+                    restaurantAddress = "Jl. Merdeka No.54, Palembang",
+                    lat = -2.978899,
+                    lon = 104.746980,
                     stock = 30,
-                    rating = 4.8,
-                    distance = 1.1,
-                    price = 12999
-                ),
-                status = "Diproses" // Status diubah menjadi "Diproses"
-            ),
-            Order(
-                id = "O003",
-                imageId = R.drawable.a3, // Menggunakan drawable a3
-                menu = Menu(
-                    menuId = "M003",
-                    imageId = R.drawable.a3,
-                    menu = "Sushi Platter",
-                    restaurant = "Sushi Express",
-                    restaurantId = 103,
-                    restaurantAddress = "Jl. Angkatan 45 No.789, Palembang",
-                    lat = -2.974619,
-                    lon = 104.749427,
-                    stock = 20,
                     rating = 4.7,
-                    distance = 3.7,
-                    price = 19999
+                    distance = 1.5,
+                    price = 20000
                 ),
-                status = "Selesai" // Status diubah menjadi "Selesai"
+                status = "Selesai"
             ),
             Order(
-                id = "O004",
-                imageId = R.drawable.a4, // Menggunakan drawable a4
+                id = "QWERTY-12345",
+                imageId = R.drawable.a3,
                 menu = Menu(
-                    menuId = "M004",
-                    imageId = R.drawable.a4,
-                    menu = "Caesar Salad",
-                    restaurant = "Green Bowl",
-                    restaurantId = 104,
-                    restaurantAddress = "Jl. Jenderal Sudirman No.321, Palembang",
-                    lat = -2.976073,
-                    lon = 104.761590,
-                    stock = 15,
+                    menuId = "3",
+                    imageId = R.drawable.a3,
+                    menu = "Nasi Campur",
+                    restaurant = "Warung Aba",
+                    restaurantId = 103,
+                    restaurantAddress = "Jl. Sultan Mahmud Badaruddin II, Palembang",
+                    lat = -2.981174,
+                    lon = 104.744632,
+                    stock = 20,
                     rating = 4.2,
-                    distance = 1.9,
-                    price = 5999
+                    distance = 0.8,
+                    price = 18000
                 ),
-                status = "Diproses" // Status diubah menjadi "Diproses"
+                status = "Diproses"
             ),
             Order(
-                id = "O005",
-                imageId = R.drawable.a5, // Menggunakan drawable a5
+                id = "ABCDE-98765",
+                imageId = R.drawable.a4,
                 menu = Menu(
-                    menuId = "M005",
-                    imageId = R.drawable.a5,
-                    menu = "Spaghetti Carbonara",
-                    restaurant = "Pasta House",
-                    restaurantId = 105,
-                    restaurantAddress = "Jl. R. Sukamto No.654, Palembang",
-                    lat = -2.984700,
-                    lon = 104.762859,
+                    menuId = "4",
+                    imageId = R.drawable.a4,
+                    menu = "Pindang Patin",
+                    restaurant = "RM Pindang Musi Rawas",
+                    restaurantId = 104,
+                    restaurantAddress = "Jl. Veteran, Palembang",
+                    lat = -2.972663,
+                    lon = 104.738133,
                     stock = 25,
                     rating = 4.6,
-                    distance = 2.2,
-                    price = 14999
+                    distance = 2.0,
+                    price = 25000
                 ),
-                status = "Selesai" // Status diubah menjadi "Selesai"
+                status = "Diproses"
+            ),
+            Order(
+                id = "ZXC987-POI321",
+                imageId = R.drawable.a5,
+                menu = Menu(
+                    menuId = "5",
+                    imageId = R.drawable.a5,
+                    menu = "Kopi Gayo",
+                    restaurant = "Kopi Darat Cafe",
+                    restaurantId = 105,
+                    restaurantAddress = "Jl. Bangau No.5, Palembang",
+                    lat = -2.984313,
+                    lon = 104.749750,
+                    stock = 15,
+                    rating = 4.8,
+                    distance = 1.0,
+                    price = 12000
+                ),
+                status = "Selesai"
             )
         )
+
 
     }
 }
