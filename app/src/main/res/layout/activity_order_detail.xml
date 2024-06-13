@@ -64,7 +64,7 @@
 
         <TextView
             android:id="@+id/tv_restaurant"
-            style="@style/TvOrderRestaurant"
+            style="@style/DetailOrderRestaurant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Geprek Pak Ijo"

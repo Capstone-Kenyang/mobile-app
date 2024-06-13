@@ -1,5 +1,9 @@
 package com.example.kenyang.data.dataclass
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Menu(
     val menuId: String,
     val imageId: Int,
@@ -13,4 +17,4 @@ data class Menu(
     val rating: Double,
     val distance: Double,
     val price: Int,
-)
+) : Parcelable
