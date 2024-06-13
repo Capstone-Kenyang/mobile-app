@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("com.google.devtools.ksp")
     id("kotlin-parcelize")
+    alias(libs.plugins.googleAndroidLibrariesMapsplatformSecretsGradlePlugin)
 }
 
 android {
@@ -51,6 +52,9 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation (libs.glide)
     implementation (libs.circleimageview)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     implementation(libs.androidx.fragment.ktx)
     androidTestImplementation(libs.androidx.junit)
