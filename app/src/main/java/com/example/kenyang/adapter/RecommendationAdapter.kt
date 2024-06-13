@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kenyang.data.dataclass.Recommendation
+import com.example.kenyang.data.dataclass.Menu
 import com.example.kenyang.databinding.ItemMenuRecommendationBinding
 
-class RecommendationAdapter : ListAdapter<Recommendation, RecommendationAdapter.RecommendationViewHolder>(DIFF_CALLBACK) {
+class RecommendationAdapter : ListAdapter<Menu, RecommendationAdapter.RecommendationViewHolder>(DIFF_CALLBACK) {
     class RecommendationViewHolder (private val itemBinding: ItemMenuRecommendationBinding) : RecyclerView.ViewHolder(itemBinding.root) {
-        fun bind(recommendation: Recommendation) {
+        fun bind(recommendation: Menu) {
             itemBinding.ivRecommendationImage.setImageResource(recommendation.imageId)
             itemBinding.tvMenu.text = recommendation.menu
             itemBinding.tvRestaurant.text = recommendation.restaurant
@@ -37,18 +37,18 @@ class RecommendationAdapter : ListAdapter<Recommendation, RecommendationAdapter.
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Recommendation>() {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Menu>() {
             override fun areItemsTheSame(
-                oldItem: Recommendation,
-                newItem: Recommendation
+                oldItem: Menu,
+                newItem: Menu
             ): Boolean {
                 return oldItem == newItem
 
             }
 
             override fun areContentsTheSame(
-                oldItem: Recommendation,
-                newItem: Recommendation
+                oldItem: Menu,
+                newItem: Menu
             ): Boolean {
                 return oldItem == newItem
 

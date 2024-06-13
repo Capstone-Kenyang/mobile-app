@@ -8,9 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kenyang.R
 import com.example.kenyang.adapter.OrderAdapter
-import com.example.kenyang.adapter.RecommendationAdapter
 import com.example.kenyang.data.dataclass.Order
-import com.example.kenyang.data.dataclass.Recommendation
 import com.example.kenyang.databinding.ActivityOrderBinding
 
 class OrderActivity : AppCompatActivity() {

@@ -17,6 +17,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import com.example.kenyang.R
 import com.example.kenyang.databinding.FragmentBottomNavBinding
+import com.example.kenyang.ui.activity.MainActivity
 import com.example.kenyang.ui.activity.OrderActivity
 import com.example.kenyang.ui.activity.ScanActivity
 import de.hdodenhof.circleimageview.BuildConfig
@@ -54,6 +55,10 @@ class BottomNavFragment : Fragment() {
         binding.buttonCamera.setOnClickListener { startCamera() }
         binding.buttonOrder.setOnClickListener {
             val intent = Intent(requireContext(), OrderActivity::class.java)
+            startActivity(intent)
+        }
+        binding.buttonHome.setOnClickListener {
+            val intent = Intent(requireContext(), MainActivity::class.java)
             startActivity(intent)
         }
     }

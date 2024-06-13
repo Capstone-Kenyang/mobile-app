@@ -133,7 +133,7 @@
     </style>
 
     <style name="TvOrderRestaurant">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">10sp</item>
         <item name="android:textColor">@color/black_2</item>
         <item name="android:includeFontPadding">false</item>
     </style>
