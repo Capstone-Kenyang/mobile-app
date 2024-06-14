@@ -1,12 +1,12 @@
 package com.example.kenyang.ui.activity
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
@@ -43,11 +43,29 @@ class LoginActivity : AppCompatActivity() {
 
         binding.signInButton.setOnClickListener {
             signIn()
+//            animateButton()
+        }
+    }
+
+    private fun animateButton() {
+        val containerLayout = binding.loginContainerLayout
+
+        val distanceToMove = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            280f,
+            resources.displayMetrics
+        )
+
+        ObjectAnimator.ofFloat(containerLayout, "translationY", -distanceToMove).apply {
+            duration = 1
+            start()
         }
     }
 
     private fun signIn() {
         val credentialManager = CredentialManager.create(this)
+
+        animateButton()
 
         val googleIdOption = GetGoogleIdOption.Builder()
             .setFilterByAuthorizedAccounts(false)
@@ -65,6 +83,7 @@ class LoginActivity : AppCompatActivity() {
                     context = this@LoginActivity,
                 )
                 handleSignIn(result)
+
             } catch (e: GetCredentialException) {
                 Log.d("Error", e.message.toString())
             }

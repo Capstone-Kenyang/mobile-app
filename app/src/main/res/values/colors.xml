@@ -9,6 +9,7 @@
     <color name="blue">#FF5508AA</color>
     <color name="orange">#FFFAA37B</color>
     <color name="neutral_500">#FF71717A</color>
+    <color name="neutral_600">#FF525252</color>
     <color name="blue_800">#ff1E40AF</color>
     <color name="indigo_50">#ffE0E7FF</color>
 </resources>
