@@ -61,14 +61,17 @@
     </string>
     <string name="order_received">Pesanan diterima</string>
     <string name="order_detail">Detail Pesanan</string>
-    <string name="price">Rp 16.000</string>
+    <string name="price">Rp %1$s</string>
+    <string name="stock">Tersedia %1$d</string>
     <string name="total">Total:</string>
-    <string name="restaurant_location">Lokasi</string>
+    <string name="restaurant_location">Cek lokasi</string>
     <string name="greeting_message">Hai, %1$s</string>
 
     <!--    Get Web Client ID from https://console.firebase.google.com/u/0/project/FirebaseProjectName/authentication/providers-->
-        <string name="your_web_client_id">550158917347-4shatdip4c5bpp3c72qqhsp1pe29i2aj.apps.googleusercontent.com</string>
+    <string name="your_web_client_id">550158917347-4shatdip4c5bpp3c72qqhsp1pe29i2aj.apps.googleusercontent.com</string>
     <string name="tagline">Mau makan apa hari ini?</string>
     <string name="signout">Signout</string>
+    <string name="order_now">Pesan - Rp %1$s</string>
+    <string name="donation_clickable_text">Atau, ingin berbagi ke sesama?</string>
 
 </resources>

@@ -61,7 +61,7 @@
 
     <style name="GreetingName">
         <item name="android:textSize">20sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/lato_black</item>
         <item name="android:textColor">@color/blue</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:layout_marginTop">24dp</item>
@@ -132,7 +132,7 @@
 
     <style name="Title">
         <item name="android:textSize">16sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/lato_black</item>
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:textColor">@color/black</item>
     </style>
@@ -196,8 +196,7 @@
 
     <style name="DetailOrderMenu">
         <item name="android:textSize">22sp</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/lato_black</item>
         <item name="android:layout_marginTop">12dp</item>
     </style>
 
@@ -231,7 +230,13 @@
     <style name="DetailOrderPrice">
         <item name="android:textSize">26sp</item>
         <item name="android:textColor">@color/blue</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/lato_black</item>
+    </style>
+
+    <style name="Theme.MyApp.BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.7</item> <!-- Set your desired dim amount here -->
     </style>
 
     <style name="Theme.Kenyang" parent="Base.Theme.Kenyang" />

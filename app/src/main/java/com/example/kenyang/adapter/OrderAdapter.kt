@@ -34,8 +34,6 @@ class OrderAdapter : ListAdapter<Order, OrderAdapter.OrderViewHolder>(DIFF_CALLB
             }
         }
 
-        // set on click listener to category page with switch
-
     }
 
     override fun onCreateViewHolder(

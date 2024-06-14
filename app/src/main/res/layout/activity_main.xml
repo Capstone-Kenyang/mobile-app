@@ -2,7 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/main_layout"
     android:background="@color/stone_50"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,7 +14,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="96dp">
 
             <TextView
                 android:id="@+id/tv_user_first_name"
@@ -50,7 +51,7 @@
                 android:id="@+id/poster"
                 style="@style/Poster"
                 android:layout_width="match_parent"
-                tools:backgroundTint="@color/blue"
+                android:backgroundTint="@color/blue"
                 app:cardCornerRadius="15dp"
                 app:layout_constraintTop_toBottomOf="@id/tv_tagline"
                 app:layout_constraintStart_toStartOf="parent"
@@ -85,9 +86,28 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_recommendation"
+                android:background="@color/stone_50"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/tv_title_recommendation"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"/>
+
+            <TextView
+                android:id="@+id/tv_title_second_recommendation"
+                style="@style/Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/rv_recommendation"
+                app:layout_constraintStart_toStartOf="@id/poster"
+                android:text="@string/recommendation" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_second_recommendation"
+                android:background="@color/stone_50"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_second_recommendation"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"/>
 
