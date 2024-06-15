@@ -44,6 +44,18 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        val orderDatabase = OrderDatabase.getDatabase(this)
+        val orderDao = orderDatabase.orderDao()
+
+//        lifecycleScope.launch {
+//            try {
+//                orderDao.deleteAllOrders()
+//                Log.d("MainActivity", "Semua data berhasil dihapus.")
+//            } catch (e: Exception) {
+//                Log.e("MainActivity", "Gagal menghapus data: ${e.message}")
+//            }
+//        }
+
         auth = Firebase.auth
         val firebaseUser = auth.currentUser
 

@@ -89,19 +89,19 @@ class MenuDetailFragment : BottomSheetDialogFragment() {
             }
         }
 
+        menuDetailViewModel.getAllOrderIds().observe(viewLifecycleOwner) { ordersIds ->
+            val newUniqueId = generateId(ordersIds)
 
-
-        binding.clickableTvDonation.setOnClickListener {
-            viewLifecycleOwner.lifecycleScope.launch {
-                menuDetailViewModel.getAllOrderIds().observe(viewLifecycleOwner) { ordersIds ->
-                    val newUniqueId = generateId(ordersIds)
-
+            binding.clickableTvDonation.setOnClickListener {
+                viewLifecycleOwner.lifecycleScope.launch {
                     menuDetailViewModel.insertOrder(
                         Order(newUniqueId, menu!!, isDonation = true)
                     )
                 }
             }
         }
+
+
     }
 
     private fun generateId(existingIds: List<String>): String {
