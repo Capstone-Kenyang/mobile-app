@@ -5,8 +5,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kenyang.R
-import com.example.kenyang.data.dataclass.Category
-import com.example.kenyang.databinding.ItemRoundCategoryBinding
 import com.example.kenyang.ui.viewmodel.MenuItem
 
 class ItemMenuRecommendationAdapter(private val menuItems: List<MenuItem>) : RecyclerView.Adapter<ItemMenuRecommendationAdapter.ViewHolder>() {
