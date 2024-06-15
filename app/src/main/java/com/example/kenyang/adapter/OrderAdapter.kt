@@ -17,12 +17,12 @@ class OrderAdapter : ListAdapter<Order, OrderAdapter.OrderViewHolder>(DIFF_CALLB
     class OrderViewHolder(private val itemBinding: ItemOrderBinding) : RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(order: Order) {
             itemBinding.tvOrderId.text = order.id
-            itemBinding.ivOrderImage.setImageResource(order.imageId)
+            itemBinding.ivOrderImage.setImageResource(order.menu.imageId)
             itemBinding.tvOrderMenu.text = order.menu.menu
             itemBinding.tvOrderRestaurant.text = order.menu.restaurant
-            itemBinding.tvOrderStatus.text = order.status
+            itemBinding.tvOrderStatus.text = if (order.isComplete) "Selesai" else "Diproses"
 
-            if (order.status == "Selesai") {
+            if (order.isComplete) {
                 itemBinding.tvOrderStatus.setBackgroundResource(R.drawable.accent_rounded_blue)
                 itemBinding.tvOrderStatus.setTextColor(Color.parseColor("#5508AA"))
             }
@@ -33,7 +33,6 @@ class OrderAdapter : ListAdapter<Order, OrderAdapter.OrderViewHolder>(DIFF_CALLB
                 itemView.context.startActivity(intent)
             }
         }
-
     }
 
     override fun onCreateViewHolder(

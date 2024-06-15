@@ -60,15 +60,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_clickable_check_location"/>
 
+    <TextView
+        android:id="@+id/tv_expire"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/expire_warning"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/black_2"
+        android:fontFamily="@font/lato_bold"
+        app:layout_constraintStart_toStartOf="@id/tv_menu"
+        app:layout_constraintTop_toBottomOf="@id/tv_address"/>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/order_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/order_now"
         android:backgroundTint="@color/blue"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/lato_bold"
-        app:layout_constraintTop_toBottomOf="@id/tv_address"
+        app:layout_constraintTop_toBottomOf="@id/tv_expire"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

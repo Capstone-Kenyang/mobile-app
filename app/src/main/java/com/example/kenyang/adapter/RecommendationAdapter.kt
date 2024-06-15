@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kenyang.R
 import com.example.kenyang.data.dataclass.Menu
 import com.example.kenyang.databinding.ItemMenuRecommendationBinding
-import com.example.kenyang.ui.customUI.BottomSheetFragment
+import com.example.kenyang.ui.fragments.MenuDetailFragment
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -30,8 +30,8 @@ class RecommendationAdapter : ListAdapter<Menu, RecommendationAdapter.Recommenda
             itemView.setOnClickListener {
 //                onOrderClick(recommendation)
 
-                val bottomSheet = BottomSheetFragment.newInstance(menu)
-                bottomSheet.show((itemView.context as AppCompatActivity).supportFragmentManager, BottomSheetFragment.TAG)
+                val bottomSheet = MenuDetailFragment.newInstance(menu)
+                bottomSheet.show((itemView.context as AppCompatActivity).supportFragmentManager, MenuDetailFragment.TAG)
             }
         }
     }

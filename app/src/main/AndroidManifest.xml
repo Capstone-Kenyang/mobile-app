@@ -33,7 +33,7 @@
             android:exported="false"
             android:theme="@style/Theme.Kenyang" />
         <activity
-            android:name=".ui.activity.OrderActivity"
+            android:name=".ui.activity.OrderListActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.ScanActivity"

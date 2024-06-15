@@ -1,12 +1,15 @@
 package com.example.kenyang.data.dataclass
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
+@Entity(tableName = "order_table")
 @Parcelize
 data class Order(
-    val id: String,
-    val imageId: Int,
+    @PrimaryKey val id: String,
     val menu: Menu,
-    val status: String
+    val isComplete: Boolean = false,
+    val isDonation: Boolean = false
 ) : Parcelable

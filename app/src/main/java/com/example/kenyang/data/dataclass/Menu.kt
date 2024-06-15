@@ -2,6 +2,8 @@ package com.example.kenyang.data.dataclass
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import java.time.LocalDate
+import java.util.Date
 
 @Parcelize
 data class Menu(
@@ -17,4 +19,5 @@ data class Menu(
     val rating: Double,
     val distance: Double,
     val price: Int,
+    val expireDate: String,
 ) : Parcelable

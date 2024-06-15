@@ -73,5 +73,6 @@
     <string name="signout">Signout</string>
     <string name="order_now">Pesan - Rp %1$s</string>
     <string name="donation_clickable_text">Atau, ingin berbagi ke sesama?</string>
+    <string name="expire_warning">Baik dikonsumsi sebelum: %1$s</string>
 
 </resources>

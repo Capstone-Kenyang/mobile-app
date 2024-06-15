@@ -2,7 +2,8 @@
 agp = "8.3.2"
 circleimageview = "3.1.0"
 fragmentKtx = "1.7.1"
-kotlin = "1.9.0"
+gson = "2.10.1"
+kotlin = "1.8.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -21,11 +22,17 @@ firebaseAuth = "23.0.0"
 playServicesAuth = "21.1.1"
 credentials = "1.2.2"
 googleid = "1.1.0"
+roomKtx = "2.6.1"
+roomRuntime = "2.4.0"
+roomCompiler = "2.5.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -42,6 +49,7 @@ firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
 androidx-credentials = { module = "androidx.credentials:credentials", version.ref = "credentials" }
 androidx-credentials-play-services-auth = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "credentials" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
