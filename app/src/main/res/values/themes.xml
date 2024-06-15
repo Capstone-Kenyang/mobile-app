@@ -2,18 +2,43 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Kenyang" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-         <item name="colorPrimary">@color/stone_50</item>
+        <item name="colorPrimary">@color/stone_50</item>
+        <item name="android:fontFamily">@font/lato_regular</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="AppLogo">
-        <item name="android:textSize">54sp</item>
-        <item name="android:textStyle">bold</item>
+    <style name="Text">
+        <item name="android:fontFamily">@font/lato_regular</item>
+    </style>
+
+    <style name="AppLogoText">
+        <item name="android:textSize">56sp</item>
+        <item name="fontFamily">@font/lato_black</item>
         <item name="android:textColor">@color/blue</item>
+        <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="Jargon">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">21sp</item>
+        <item name="android:text">@string/jargon</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_marginBottom">40dp</item>
+        <item name="android:layout_marginStart">44dp</item>
+        <item name="android:layout_marginEnd">44dp</item>
     </style>
+
+    <style name="GoogleButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">64dp</item>
+        <item name="android:layout_marginStart">33dp</item>
+        <item name="android:layout_marginEnd">33dp</item>
+        <item name="android:text">Sign in with Google</item>
+        <item name="android:textColor">@color/neutral_600</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:fontFamily">@font/lato_bold</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
 
     <style name="EditText">
         <item name="android:layout_marginStart">24dp</item>
@@ -34,11 +59,26 @@
         <item name="android:backgroundTint">@color/orange</item>
     </style>
 
+    <style name="GreetingName">
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/lato_black</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:layout_marginTop">24dp</item>
+    </style>
+
+    <style name="Tagline">
+        <item name="android:textSize">14sp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_marginTop">2dp</item>
+    </style>
+
     <style name="Poster">
         <item name="android:layout_height">140dp</item>
         <item name="android:layout_marginStart">24dp</item>
         <item name="android:layout_marginEnd">24dp</item>
-        <item name="android:layout_marginTop">18dp</item>
+        <item name="android:layout_marginTop">33dp</item>
     </style>
 
     <style name="RoundCategory">
@@ -48,7 +88,7 @@
     </style>
 
     <style name="CategoryLayout">
-        <item name="android:layout_height">90dp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">16dp</item>
         <item name="android:layout_marginStart">24dp</item>
     </style>
@@ -58,7 +98,7 @@
         <item name="android:layout_height">92dp</item>
         <item name="android:scaleType">fitXY</item>
     </style>
-    
+
     <style name="RecMenu">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">12sp</item>
@@ -92,7 +132,7 @@
 
     <style name="Title">
         <item name="android:textSize">16sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/lato_black</item>
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:textColor">@color/black</item>
     </style>
@@ -120,7 +160,7 @@
         <item name="android:layout_marginTop">16.7dp</item>
         <item name="android:layout_marginBottom">16.7dp</item>
     </style>
-    
+
     <style name="TvOrderId">
         <item name="android:textSize">8sp</item>
         <item name="android:textColor">@color/black_4</item>
@@ -134,7 +174,8 @@
 
     <style name="TvOrderRestaurant">
         <item name="android:textSize">10sp</item>
-        <item name="android:textColor">@color/neutral_500</item>
+        <item name="android:textColor">@color/black_2</item>
+        <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="TvOrderStatus">
@@ -142,42 +183,62 @@
         <item name="android:textColor">@color/black_2</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginTop">11.5dp</item>
+        <item name="android:paddingTop">1dp</item>
+        <item name="android:paddingBottom">1dp</item>
         <item name="android:background">@drawable/accent_rounded_grey</item>
     </style>
 
-    <style name="TypographyStyles.TextParent" parent="TextAppearance.MaterialComponents.Subtitle1">
-        <item name="fontFamily">font/worksans_regular</item>
-        <item name="android:fontFamily">font/worksans_regular</item>
-        <item name="android:letterSpacing">0</item>
-        <item name="android:includeFontPadding">false</item>
+    <style name="DetailOrderId">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black_3</item>
+        <item name="android:layout_marginTop">27dp</item>
     </style>
 
-    <style name="TypographyStyles.Heading1" parent="TextAppearance.MaterialComponents.Headline1">
-        <item name="fontFamily">sans-serif-medium</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
+    <style name="DetailOrderMenu">
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">@font/lato_black</item>
+        <item name="android:layout_marginTop">12dp</item>
+    </style>
+
+    <style name="DetailOrderRestaurant">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black_2</item>
+    </style>
+
+    <style name="DetailOrderAddress">
         <item name="android:textSize">16sp</item>
-        <item name="android:letterSpacing">0</item>
-        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@color/black_4</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginEnd">44dp</item>
+        <item name="android:layout_marginStart">44dp</item>
     </style>
 
-
-    <style name="TypographyStyles.Text1" parent="TypographyStyles.TextParent">
+    <style name="DetailOrderTvLocation">
         <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/blue_800</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
     </style>
 
-    <style name="TypographyStyles.Text2.Bold" parent="TypographyStyles.TextParent">
-        <item name="android:textSize">12sp</item>
-        <item name="fontFamily">sans-serif-medium</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
+    <style name="DetailOrderTvTotal">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_marginTop">47dp</item>
     </style>
 
-    <style name="TypographyStyles.Text3" parent="TypographyStyles.TextParent">
-        <item name="android:textSize">11sp</item>
+    <style name="DetailOrderPrice">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:fontFamily">@font/lato_black</item>
     </style>
 
-    <style name="TypographyStyles.Text4" parent="TypographyStyles.TextParent">
-        <item name="android:textSize">@dimen/_10ssp</item>
+    <style name="Theme.MyApp.BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.7</item> <!-- Set your desired dim amount here -->
     </style>
 
     <style name="Theme.Kenyang" parent="Base.Theme.Kenyang" />
+
 </resources>

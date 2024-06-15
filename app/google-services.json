@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "550158917347",
+    "project_id": "kenyang-af539",
+    "storage_bucket": "kenyang-af539.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:550158917347:android:b6072753f63b0d7056efd6",
+        "android_client_info": {
+          "package_name": "com.example.kenyang"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "550158917347-hjbpfkn3k9n3bn044rd5o9e9i5gbjhnd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kenyang",
+            "certificate_hash": "dd9050b43a647e17ba70a1cd6e17ff23d4d0305b"
+          }
+        },
+        {
+          "client_id": "550158917347-4shatdip4c5bpp3c72qqhsp1pe29i2aj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDp7nVhu3O1uARhIVSjsnJKBdx33Q-vtQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "550158917347-4shatdip4c5bpp3c72qqhsp1pe29i2aj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

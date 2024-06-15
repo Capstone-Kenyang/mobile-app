@@ -1,0 +1,8 @@
+<!-- res/drawable/custom_overlay_background.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#D971717A" />
+        </shape>
+    </item>
+</layer-list>

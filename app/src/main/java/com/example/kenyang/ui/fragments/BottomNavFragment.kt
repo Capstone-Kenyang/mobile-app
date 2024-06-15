@@ -8,16 +8,15 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
-import com.example.kenyang.R
 import com.example.kenyang.databinding.FragmentBottomNavBinding
-import com.example.kenyang.ui.activity.OrderActivity
+import com.example.kenyang.ui.activity.MainActivity
+import com.example.kenyang.ui.activity.OrderListActivity
 import com.example.kenyang.ui.activity.ScanActivity
 import de.hdodenhof.circleimageview.BuildConfig
 import java.io.File
@@ -53,7 +52,11 @@ class BottomNavFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.buttonCamera.setOnClickListener { startCamera() }
         binding.buttonOrder.setOnClickListener {
-            val intent = Intent(requireContext(), OrderActivity::class.java)
+            val intent = Intent(requireContext(), OrderListActivity::class.java)
+            startActivity(intent)
+        }
+        binding.buttonHome.setOnClickListener {
+            val intent = Intent(requireContext(), MainActivity::class.java)
             startActivity(intent)
         }
     }

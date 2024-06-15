@@ -1,5 +1,6 @@
 package com.example.kenyang.adapter
 
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,29 +8,31 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kenyang.R
-import com.example.kenyang.data.dataclass.Category
 import com.example.kenyang.data.dataclass.Order
 import com.example.kenyang.databinding.ItemOrderBinding
-import com.example.kenyang.databinding.ItemRoundCategoryBinding
-import kotlinx.coroutines.NonDisposableHandle.parent
+import com.example.kenyang.ui.activity.OrderDetailActivity
 
 class OrderAdapter : ListAdapter<Order, OrderAdapter.OrderViewHolder>(DIFF_CALLBACK) {
 
     class OrderViewHolder(private val itemBinding: ItemOrderBinding) : RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(order: Order) {
             itemBinding.tvOrderId.text = order.id
-            itemBinding.ivOrderImage.setImageResource(order.imageId)
-            itemBinding.tvOrderMenu.text = order.menu
-            itemBinding.tvOrderRestaurant.text = order.restaurant
-            itemBinding.tvOrderStatus.text = order.status
+            itemBinding.ivOrderImage.setImageResource(order.menu.imageId)
+            itemBinding.tvOrderMenu.text = order.menu.menu
+            itemBinding.tvOrderRestaurant.text = order.menu.restaurant
+            itemBinding.tvOrderStatus.text = if (order.isComplete) "Selesai" else "Diproses"
 
-            if (order.status == "Selesai") {
+            if (order.isComplete) {
                 itemBinding.tvOrderStatus.setBackgroundResource(R.drawable.accent_rounded_blue)
                 itemBinding.tvOrderStatus.setTextColor(Color.parseColor("#5508AA"))
             }
-        }
 
-        // set on click listener to category page with switch
+            itemView.setOnClickListener {
+                val intent = Intent(itemView.context, OrderDetailActivity::class.java)
+                intent.putExtra(OrderDetailActivity.EXTRA_ORDER, order)
+                itemView.context.startActivity(intent)
+            }
+        }
     }
 
     override fun onCreateViewHolder(
