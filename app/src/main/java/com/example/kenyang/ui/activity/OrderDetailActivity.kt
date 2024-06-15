@@ -53,18 +53,18 @@ class OrderDetailActivity : AppCompatActivity() {
         val lat = order.menu.lat
         val lon = order.menu.lon
 
-        setButtonVisibility(order.isComplete)
+        setButtonVisibility(order.isComplete, order.isDonation)
 
-        val statusInfo = if (order.isComplete) {
+        val statusInfo = if (order.isComplete && !order.isDonation) {
             resources.getString(R.string.status_info_order_done)
-        } else if (!order.isDonation) {
+        } else if (order.isDonation) {
             resources.getString(R.string.status_donation_info_not_done)
         } else {
             ""
         }
 
         val orderStatusFragment = OrderStatusFragment.newInstance(statusInfo)
-        inflateFragment(orderStatusFragment, R.id.status_order_info_container, order.isComplete)
+        inflateFragment(orderStatusFragment, R.id.status_order_info_container, order.isComplete, order.isDonation)
 
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         val mapFragment = MapsFragment.newInstance(lat, lon)
@@ -100,15 +100,15 @@ class OrderDetailActivity : AppCompatActivity() {
 
     }
 
-    private fun setButtonVisibility(isComplete: Boolean) {
-        if (isComplete) {
+    private fun setButtonVisibility(isComplete: Boolean, isDonation: Boolean) {
+        if (isComplete || isDonation) {
             binding.buttonSend.visibility = View.GONE
             binding.statusOrderInfoContainer.visibility = View.VISIBLE
         }
     }
 
-    private fun inflateFragment(fragment: Fragment, containerId: Int, isComplete: Boolean) {
-        if (isComplete) {
+    private fun inflateFragment(fragment: Fragment, containerId: Int, isComplete: Boolean, isDonation: Boolean) {
+        if (isComplete || isDonation) {
             supportFragmentManager.beginTransaction()
                 .replace(containerId, fragment)
                 .commit()
