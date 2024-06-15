@@ -4,23 +4,17 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.text.TextUtils.replace
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.replace
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.fragment.app.Fragment
 import com.example.kenyang.R
-import com.example.kenyang.data.dataclass.Menu
 import com.example.kenyang.data.dataclass.Order
 import com.example.kenyang.databinding.ActivityOrderDetailBinding
 import com.example.kenyang.factory.ViewModelFactory
 import com.example.kenyang.ui.fragments.MapsFragment
+import com.example.kenyang.ui.fragments.OrderStatusFragment
 import com.example.kenyang.ui.viewmodel.OrderDetailViewModel
 import java.text.NumberFormat
 import java.util.Locale
@@ -61,7 +55,17 @@ class OrderDetailActivity : AppCompatActivity() {
 
         setButtonVisibility(order.isComplete)
 
-        // untuk menampilkan map dalam container
+        val statusInfo = if (order.isComplete) {
+            resources.getString(R.string.status_info_order_done)
+        } else if (!order.isDonation) {
+            resources.getString(R.string.status_donation_info_not_done)
+        } else {
+            ""
+        }
+
+        val orderStatusFragment = OrderStatusFragment.newInstance(statusInfo)
+        inflateFragment(orderStatusFragment, R.id.status_order_info_container, order.isComplete)
+
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         val mapFragment = MapsFragment.newInstance(lat, lon)
 
@@ -96,9 +100,18 @@ class OrderDetailActivity : AppCompatActivity() {
 
     }
 
-    private fun setButtonVisibility(orderStatus: Boolean) {
-        if (orderStatus) {
+    private fun setButtonVisibility(isComplete: Boolean) {
+        if (isComplete) {
             binding.buttonSend.visibility = View.GONE
+            binding.statusOrderInfoContainer.visibility = View.VISIBLE
+        }
+    }
+
+    private fun inflateFragment(fragment: Fragment, containerId: Int, isComplete: Boolean) {
+        if (isComplete) {
+            supportFragmentManager.beginTransaction()
+                .replace(containerId, fragment)
+                .commit()
         }
     }
 

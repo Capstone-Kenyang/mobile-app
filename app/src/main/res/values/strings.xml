@@ -74,5 +74,7 @@
     <string name="order_now">Pesan - Rp %1$s</string>
     <string name="donation_clickable_text">Atau, ingin berbagi ke sesama?</string>
     <string name="expire_warning">Baik dikonsumsi sebelum: %1$s</string>
+    <string name="status_donation_info_not_done">Donasi sedang diproses seller\nMohon tunggu keterangan lebih lanjut</string>
+    <string name="status_info_order_done">Order telah diterima user</string>
 
 </resources>

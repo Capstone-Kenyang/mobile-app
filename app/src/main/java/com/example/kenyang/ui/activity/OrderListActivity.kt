@@ -43,7 +43,6 @@ class OrderListActivity : AppCompatActivity() {
         orderListViewModel.getAllOrder().observe(this@OrderListActivity) {
             inflateRvLayout(it.reversed())
         }
-
     }
 
     private fun inflateRvLayout(list: List<Order>) {
