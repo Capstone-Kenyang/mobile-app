@@ -75,4 +75,6 @@
     <string name="donation_clickable_text">Atau, ingin berbagi ke sesama?</string>
     <string name="expire_warning">Baik dikonsumsi sebelum: %1$s</string>
 
+    <string name="category_image">Gambar Kategori</string>
+
 </resources>

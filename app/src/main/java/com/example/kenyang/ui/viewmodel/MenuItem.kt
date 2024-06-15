@@ -1,15 +1,13 @@
 package com.example.kenyang.ui.viewmodel
 
-// public int getImageResId() {
-//     return imageResId;
-// }
-class MenuItem// this.imageResId = imageResId; // Uncomment if using image resources
-// private int imageResId; // Uncomment if using image resources
-    (
+data class MenuItem(
     val menuName: String,
     val stock: String,
     val restaurantName: String,
     val rating: String,
-    val distance: String, // Uncomment if using image resources
+    val distance: String,
     val price: String
+    // Uncomment if using image resources
+    // val imageResId: Int
 )
+
