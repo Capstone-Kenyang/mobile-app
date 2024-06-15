@@ -44,6 +44,8 @@ android {
     buildToolsVersion = "34.0.0"
 }
 
+
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -73,4 +75,7 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.constraintlayout)
 }
