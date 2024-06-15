@@ -5,6 +5,9 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils.replace
+import android.view.View
+import android.widget.Toast
+import androidx.activity.viewModels
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.replace
@@ -16,7 +19,9 @@ import com.example.kenyang.R
 import com.example.kenyang.data.dataclass.Menu
 import com.example.kenyang.data.dataclass.Order
 import com.example.kenyang.databinding.ActivityOrderDetailBinding
+import com.example.kenyang.factory.ViewModelFactory
 import com.example.kenyang.ui.fragments.MapsFragment
+import com.example.kenyang.ui.viewmodel.OrderDetailViewModel
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -24,11 +29,16 @@ class OrderDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityOrderDetailBinding
 
+    private val orderDetailViewModel: OrderDetailViewModel by viewModels<OrderDetailViewModel> {
+        ViewModelFactory.getInstance(application)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityOrderDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         val order = if (Build.VERSION.SDK_INT >= 33) {
             intent.getParcelableExtra(EXTRA_ORDER, Order::class.java)
@@ -48,6 +58,8 @@ class OrderDetailActivity : AppCompatActivity() {
 
         val lat = order.menu.lat
         val lon = order.menu.lon
+
+        setButtonVisibility(order.isComplete)
 
         // untuk menampilkan map dalam container
         val fragmentTransaction = supportFragmentManager.beginTransaction()
@@ -73,7 +85,27 @@ class OrderDetailActivity : AppCompatActivity() {
                 startActivity(webIntent)
             }
         }
+
+
+        binding.buttonSend.setOnClickListener {
+            order.isComplete = true
+            orderDetailViewModel.updateOrder(order)
+            makeToast("Pesanan telah diterima")
+            this.recreate()
+        }
+
     }
+
+    private fun setButtonVisibility(orderStatus: Boolean) {
+        if (orderStatus) {
+            binding.buttonSend.visibility = View.GONE
+        }
+    }
+
+    private fun makeToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
 
     companion object {
         const val EXTRA_ORDER = "extra-order"

@@ -41,7 +41,7 @@ class OrderListActivity : AppCompatActivity() {
         }
 
         orderListViewModel.getAllOrder().observe(this@OrderListActivity) {
-            inflateRvLayout(it)
+            inflateRvLayout(it.reversed())
         }
 
     }
@@ -53,115 +53,4 @@ class OrderListActivity : AppCompatActivity() {
         binding.rvOrder.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
 
-//    @RequiresApi(Build.VERSION_CODES.O)
-//    private fun makeList(): List<Order> {
-//        return listOf(
-//            Order(
-//                id = "MX123-AWU80",
-//                menu = Menu(
-//                    menuId = "1",
-//                    imageId = R.drawable.a1,
-//                    menu = "Pempek",
-//                    restaurant = "Pempek Beringin",
-//                    restaurantId = 101,
-//                    restaurantAddress = "Jl. Dr. M. Isa No.40, Palembang",
-//                    lat = -2.980122,
-//                    lon = 104.737580,
-//                    stock = 50,
-//                    rating = 4.5,
-//                    distance = 1.2,
-//                    price = 15000,
-//                    expireDate = "27 Mei 2025"
-//                ),
-//                isComplete = false,
-//                isDonation = false
-//            ),
-//            Order(
-//                id = "AWU80-MX123",
-//                imageId = R.drawable.a2,
-//                menu = Menu(
-//                    menuId = "2",
-//                    imageId = R.drawable.a2,
-//                    menu = "Mie Celor",
-//                    restaurant = "Mie Celor 26 Ilir H.M. Syafei Z",
-//                    restaurantId = 102,
-//                    restaurantAddress = "Jl. Merdeka No.54, Palembang",
-//                    lat = -2.978899,
-//                    lon = 104.746980,
-//                    stock = 30,
-//                    rating = 4.7,
-//                    distance = 1.5,
-//                    price = 20000,
-//                    expireDate = "27 Mei 2025"
-//                ),
-//                status = "Diproses",
-//                isDonation = false
-//            ),
-//            Order(
-//                id = "QWERTY-12345",
-//                imageId = R.drawable.a3,
-//                menu = Menu(
-//                    menuId = "3",
-//                    imageId = R.drawable.a3,
-//                    menu = "Nasi Campur",
-//                    restaurant = "Warung Aba",
-//                    restaurantId = 103,
-//                    restaurantAddress = "Jl. Sultan Mahmud Badaruddin II, Palembang",
-//                    lat = -2.981174,
-//                    lon = 104.744632,
-//                    stock = 20,
-//                    rating = 4.2,
-//                    distance = 0.8,
-//                    price = 18000,
-//                    expireDate = "27 Mei 2025"
-//                ),
-//                status = "Diproses",
-//                isDonation = false
-//            ),
-//            Order(
-//                id = "ABCDE-98765",
-//                imageId = R.drawable.a4,
-//                menu = Menu(
-//                    menuId = "4",
-//                    imageId = R.drawable.a4,
-//                    menu = "Pindang Patin",
-//                    restaurant = "RM Pindang Musi Rawas",
-//                    restaurantId = 104,
-//                    restaurantAddress = "Jl. Veteran, Palembang",
-//                    lat = -2.972663,
-//                    lon = 104.738133,
-//                    stock = 25,
-//                    rating = 4.6,
-//                    distance = 2.0,
-//                    price = 25000,
-//                    expireDate = "27 Mei 2025"
-//                ),
-//                status = "Diproses",
-//                isDonation = false
-//            ),
-//            Order(
-//                id = "ZXC987-POI321",
-//                imageId = R.drawable.a5,
-//                menu = Menu(
-//                    menuId = "5",
-//                    imageId = R.drawable.a5,
-//                    menu = "Kopi Gayo",
-//                    restaurant = "Kopi Darat Cafe",
-//                    restaurantId = 105,
-//                    restaurantAddress = "Jl. Bangau No.5, Palembang",
-//                    lat = -2.984313,
-//                    lon = 104.749750,
-//                    stock = 15,
-//                    rating = 4.8,
-//                    distance = 1.0,
-//                    price = 12000,
-//                    expireDate = "27 Mei 2025"
-//                ),
-//                status = "Diproses",
-//                isDonation = false
-//            )
-//        )
-
-
-//    }
 }

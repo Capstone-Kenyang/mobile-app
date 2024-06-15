@@ -10,6 +10,6 @@ import kotlinx.parcelize.Parcelize
 data class Order(
     @PrimaryKey val id: String,
     val menu: Menu,
-    val isComplete: Boolean = false,
+    var isComplete: Boolean = false,
     val isDonation: Boolean = false
 ) : Parcelable

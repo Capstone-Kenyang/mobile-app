@@ -74,6 +74,7 @@ class MenuDetailFragment : BottomSheetDialogFragment() {
             navigateToMapsFragment(menu!!.lat, menu!!.lon)
         }
 
+
         menuDetailViewModel.getAllOrderIds().observe(viewLifecycleOwner) { ordersIds ->
             binding.orderButton.setOnClickListener {
                 val newUniqueId = generateId(ordersIds)

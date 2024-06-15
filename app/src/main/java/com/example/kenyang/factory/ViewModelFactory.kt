@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.kenyang.ui.viewmodel.MenuDetailViewModel
+import com.example.kenyang.ui.viewmodel.OrderDetailViewModel
 import com.example.kenyang.ui.viewmodel.OrderListViewModel
 
 class ViewModelFactory private constructor(private val mApplication: Application) : ViewModelProvider.NewInstanceFactory() {
@@ -13,6 +14,8 @@ class ViewModelFactory private constructor(private val mApplication: Application
             return MenuDetailViewModel(mApplication) as T
         } else if (modelClass.isAssignableFrom(OrderListViewModel::class.java)) {
             return OrderListViewModel(mApplication) as T
+        } else if (modelClass.isAssignableFrom(OrderDetailViewModel::class.java)) {
+            return OrderDetailViewModel(mApplication) as T
         }
 
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
