@@ -19,6 +19,7 @@
     <color name="colorPrimary">#09af00</color>
     <color name="gray3">#8F8F8F</color>
     <color name="gray4">#C2C2C2</color>
+    <color name="indigo_50">#FFE0E7FF</color>
     <color name="neutral_600">#FF525252</color>
     <color name="blue_800">#ff1E40AF</color>
 </resources>
