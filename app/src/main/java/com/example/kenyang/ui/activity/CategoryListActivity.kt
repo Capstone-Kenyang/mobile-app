@@ -18,7 +18,7 @@ class CategoryListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category_list)
 
-        recyclerView = findViewById(R.id.recyclerView)
+        recyclerView = findViewById(R.id.rv_category_menu_list)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         menuItemList = listOf(
