@@ -98,6 +98,8 @@ class MenuDetailFragment : BottomSheetDialogFragment() {
                         Order(newUniqueId, menu!!, isDonation = true)
                     )
                 }
+
+                dismiss()
             }
         }
 
