@@ -8,23 +8,23 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kenyang.R
 import com.example.kenyang.data.dataclass.Menu
+import com.example.kenyang.databinding.ItemCategoryListBinding
 import com.example.kenyang.databinding.ItemMenuRecommendationBinding
 import com.example.kenyang.ui.fragments.MenuDetailFragment
 import java.text.NumberFormat
 import java.util.Locale
 
-class RecommendationAdapter : ListAdapter<Menu, RecommendationAdapter.RecommendationViewHolder>(DIFF_CALLBACK) {
-    class RecommendationViewHolder (private val itemBinding: ItemMenuRecommendationBinding) : RecyclerView.ViewHolder(itemBinding.root) {
+class CategoryMenuAdapter : ListAdapter<Menu, CategoryMenuAdapter.MenuViewHolder>(DIFF_CALLBACK) {
+    class MenuViewHolder (private val itemBinding: ItemCategoryListBinding) : RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(menu: Menu) {
             val locale = Locale("id", "ID")
             val formattedPrice = NumberFormat.getNumberInstance(locale).format(menu.price)
 
-            itemBinding.ivRecommendationImage.setImageResource(menu.imageId)
+            itemBinding.ivImage.setImageResource(menu.imageId)
             itemBinding.tvMenu.text = menu.menu
             itemBinding.tvRestaurant.text = menu.restaurant
-            itemBinding.tvStock.text = itemView.context.resources.getString(R.string.stock, menu.stock)
-            itemBinding.tvRating.text = menu.rating.toString()
-            itemBinding.tvDistance.text = menu.distance.toString()
+
+            itemBinding.tvAdditionalInfo.text = itemView.context.resources.getString(R.string.additional_info, menu.rating.toString(), menu.stock.toString())
             itemBinding.tvPrice.text = itemView.context.resources.getString(R.string.price, formattedPrice)
 
             itemView.setOnClickListener {
@@ -39,12 +39,12 @@ class RecommendationAdapter : ListAdapter<Menu, RecommendationAdapter.Recommenda
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): RecommendationAdapter.RecommendationViewHolder {
-        val binding = ItemMenuRecommendationBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return RecommendationAdapter.RecommendationViewHolder(binding)
+    ): CategoryMenuAdapter.MenuViewHolder {
+        val binding = ItemCategoryListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CategoryMenuAdapter.MenuViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: RecommendationAdapter.RecommendationViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CategoryMenuAdapter.MenuViewHolder, position: Int) {
         val recommendation = getItem(position)
         holder.bind(recommendation)
     }

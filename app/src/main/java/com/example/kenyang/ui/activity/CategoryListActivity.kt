@@ -1,6 +1,6 @@
 package com.example.kenyang.ui.activity
 
-import ItemMenuRecommendationAdapter
+import ItemMenuAdapter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,7 +11,7 @@ import com.example.kenyang.ui.viewmodel.MenuItem
 class CategoryListActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: ItemMenuRecommendationAdapter
+    private lateinit var adapter: ItemMenuAdapter
     private lateinit var menuItemList: List<MenuItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +27,7 @@ class CategoryListActivity : AppCompatActivity() {
             // Add more items as needed
         )
 
-        adapter = ItemMenuRecommendationAdapter(menuItemList)
+        adapter = ItemMenuAdapter(menuItemList)
         recyclerView.adapter = adapter
     }
 }

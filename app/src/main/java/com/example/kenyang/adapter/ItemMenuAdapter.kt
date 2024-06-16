@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kenyang.R
 import com.example.kenyang.ui.viewmodel.MenuItem
 
-class ItemMenuRecommendationAdapter(private val menuItems: List<MenuItem>) : RecyclerView.Adapter<ItemMenuRecommendationAdapter.ViewHolder>() {
+class ItemMenuAdapter(private val menuItems: List<MenuItem>) : RecyclerView.Adapter<ItemMenuAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_menu_recommendation, parent, false)

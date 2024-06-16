@@ -3,7 +3,6 @@ package com.example.kenyang.ui.activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -14,17 +13,14 @@ import androidx.credentials.CredentialManager
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kenyang.R
-import com.example.kenyang.adapter.RecommendationAdapter
+import com.example.kenyang.adapter.MenuAdapter
 import com.example.kenyang.data.dataclass.Menu
 import com.example.kenyang.data.local.OrderDatabase
 import com.example.kenyang.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.time.LocalDate
-import java.util.Date
 
 class MainActivity : AppCompatActivity() {
 
@@ -74,7 +70,7 @@ class MainActivity : AppCompatActivity() {
             signOut()
         }
 
-        val adapter = RecommendationAdapter()
+        val adapter = MenuAdapter()
         val recommendationList = makeList()
         adapter.submitList(recommendationList)
 
