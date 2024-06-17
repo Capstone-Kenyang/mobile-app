@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
 import androidx.core.content.FileProvider
+import com.example.kenyang.data.dataclass.Menu
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -62,4 +63,12 @@ fun uriToFile(imageUri: Uri, context: Context): File {
     outputStream.close()
     inputStream.close()
     return myFile
+}
+
+fun sortListByDistance(menus: List<Menu>): List<Menu> {
+    return menus.sortedBy { it.distance }
+}
+
+fun sortListByRating(menus: List<Menu>): List<Menu> {
+    return menus.sortedBy { it.rating }
 }

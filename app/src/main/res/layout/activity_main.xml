@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/divider"
                 app:layout_constraintStart_toStartOf="@id/poster"
-                android:text="@string/recommendation" />
+                android:text="@string/shortest_distance" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_recommendation"
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/rv_recommendation"
                 app:layout_constraintStart_toStartOf="@id/poster"
-                android:text="@string/recommendation" />
+                android:text="@string/shortest_distance" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_second_recommendation"

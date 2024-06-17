@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kenyang.R
 import com.example.kenyang.adapter.MenuAdapter
+import com.example.kenyang.converter.sortListByDistance
 import com.example.kenyang.data.dataclass.Menu
 import com.example.kenyang.data.local.OrderDatabase
 import com.example.kenyang.databinding.ActivityMainBinding
@@ -71,29 +72,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         val adapter = MenuAdapter()
-        val recommendationList = makeList()
-        adapter.submitList(recommendationList)
+        val list = makeList()
+        val sortedByDistanceMenu = sortListByDistance(list)
+        adapter.submitList(sortedByDistanceMenu)
 
         binding.rvRecommendation.adapter = adapter
         binding.rvRecommendation.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
-        binding.rvSecondRecommendation.adapter = adapter
+        val secondAdapter = MenuAdapter()
+        secondAdapter.submitList(list)
+        binding.rvSecondRecommendation.adapter = secondAdapter
         binding.rvSecondRecommendation.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-
-
     }
 
-//    private fun showMenuDetailBottomSheet(menu: Menu) {
-//        val bottomSheet = BottomSheetFragment.newInstance(
-////            order.menu.lat,
-////            order.menu.lon,
-////            order.menu.menu,
-////            order.menu.restaurant
-//        )
-//        bottomSheet.show(supportFragmentManager, BottomSheetFragment.TAG)
-//    }
-
-    // Function to create and return the list of Menu objects
     @RequiresApi(Build.VERSION_CODES.O)
     fun makeList(): List<Menu> {
         return listOf(
