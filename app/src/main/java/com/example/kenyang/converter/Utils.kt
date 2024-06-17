@@ -70,5 +70,5 @@ fun sortListByDistance(menus: List<Menu>): List<Menu> {
 }
 
 fun sortListByRating(menus: List<Menu>): List<Menu> {
-    return menus.sortedBy { it.rating }
+    return menus.sortedByDescending { it.rating }
 }
