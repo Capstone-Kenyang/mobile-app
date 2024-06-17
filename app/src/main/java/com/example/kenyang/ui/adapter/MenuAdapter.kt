@@ -1,4 +1,4 @@
-package com.example.kenyang.adapter
+package com.example.kenyang.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -41,12 +41,12 @@ class MenuAdapter : ListAdapter<Menu, MenuAdapter.RecommendationViewHolder>(DIFF
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): MenuAdapter.RecommendationViewHolder {
+    ): RecommendationViewHolder {
         val binding = ItemMenuRecommendationBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MenuAdapter.RecommendationViewHolder(binding)
+        return RecommendationViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: MenuAdapter.RecommendationViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecommendationViewHolder, position: Int) {
         val recommendation = getItem(position)
         holder.bind(recommendation)
     }

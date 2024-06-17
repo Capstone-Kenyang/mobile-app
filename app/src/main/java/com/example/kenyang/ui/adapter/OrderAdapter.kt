@@ -1,4 +1,4 @@
-package com.example.kenyang.adapter
+package com.example.kenyang.ui.adapter
 
 import android.content.Intent
 import android.graphics.Color

@@ -21,8 +21,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kenyang.R
-import com.example.kenyang.adapter.CategoryMenuAdapter
-import com.example.kenyang.adapter.MenuAdapter
+import com.example.kenyang.ui.adapter.CategoryMenuAdapter
+import com.example.kenyang.ui.adapter.MenuAdapter
 import com.example.kenyang.converter.sortListByDistance
 import com.example.kenyang.converter.sortListByRating
 import com.example.kenyang.data.dataclass.Menu
@@ -41,12 +41,6 @@ class CategoryListActivity : AppCompatActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var menuAdapter: CategoryMenuAdapter
     private lateinit var menus: List<Menu>
-//    private val menus = if (Build.VERSION.SDK_INT >= 33) {
-//        intent.getParcelableArrayListExtra(EXTRA_MENUS, Menu::class.java)
-//    } else {
-//        @Suppress("DEPRECATION")
-//        intent.getParcelableArrayListExtra(EXTRA_MENUS)
-//    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -98,6 +92,10 @@ class CategoryListActivity : AppCompatActivity() {
 
             adapter.submitList(sortListByDistance(menus!!.toList()))
 
+        }
+
+        binding.backButton.setOnClickListener {
+            finish()
         }
 
     }

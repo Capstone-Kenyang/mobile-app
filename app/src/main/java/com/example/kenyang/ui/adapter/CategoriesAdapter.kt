@@ -1,4 +1,4 @@
-package com.example.kenyang.adapter
+package com.example.kenyang.ui.adapter
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -31,13 +31,13 @@ class CategoriesAdapter : ListAdapter<Category, CategoriesAdapter.CategoryViewHo
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): CategoriesAdapter.CategoryViewHolder {
+    ): CategoryViewHolder {
         val binding = ItemRoundCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CategoryViewHolder(binding)
     }
 
 
-    override fun onBindViewHolder(holder: CategoriesAdapter.CategoryViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val category = getItem(position)
         holder.bind(category)
     }

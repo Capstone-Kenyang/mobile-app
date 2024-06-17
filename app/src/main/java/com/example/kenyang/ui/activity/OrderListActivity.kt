@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kenyang.R
-import com.example.kenyang.adapter.OrderAdapter
+import com.example.kenyang.ui.adapter.OrderAdapter
 import com.example.kenyang.data.dataclass.Menu
 import com.example.kenyang.data.dataclass.Order
 import com.example.kenyang.databinding.ActivityOrderBinding
@@ -42,6 +42,10 @@ class OrderListActivity : AppCompatActivity() {
 
         orderListViewModel.getAllOrder().observe(this@OrderListActivity) {
             inflateRvLayout(it.reversed())
+        }
+
+        binding.backButton.setOnClickListener {
+            finish()
         }
     }
 

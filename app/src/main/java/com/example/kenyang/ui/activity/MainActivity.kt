@@ -22,7 +22,7 @@ import androidx.credentials.CredentialManager
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kenyang.R
-import com.example.kenyang.adapter.MenuAdapter
+import com.example.kenyang.ui.adapter.MenuAdapter
 import com.example.kenyang.converter.calculateDistances
 import com.example.kenyang.converter.sortListByDistance
 import com.example.kenyang.converter.sortListByRating
@@ -47,6 +47,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var menuAdapter: MenuAdapter
+    private lateinit var secondAdapter: MenuAdapter
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,7 +101,7 @@ class MainActivity : AppCompatActivity() {
         binding.rvRecommendation.adapter = menuAdapter
         binding.rvRecommendation.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
-        val secondAdapter = MenuAdapter()
+        secondAdapter = MenuAdapter()
         secondAdapter.submitList(sortListByRating(menus))
         binding.rvSecondRecommendation.adapter = secondAdapter
         binding.rvSecondRecommendation.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -140,8 +142,8 @@ class MainActivity : AppCompatActivity() {
             Log.d("Main", "current $currentLocation")
             menu.copy(distance = currentLocation.distanceTo(menuLocation).toDouble())
         }
-        menuAdapter.notifyDataSetChanged()
         menuAdapter.submitList(updatedMenuList)
+        secondAdapter.submitList(updatedMenuList)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
