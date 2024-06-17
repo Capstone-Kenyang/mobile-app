@@ -139,7 +139,7 @@
 
     <style name="AppBar">
         <item name="android:textSize">18sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/lato_bold</item>
     </style>
 
     <style name="NavButton">
