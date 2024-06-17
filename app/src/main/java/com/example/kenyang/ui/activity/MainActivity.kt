@@ -1,15 +1,20 @@
 package com.example.kenyang.ui.activity
 
+import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.location.LocationManagerCompat.getCurrentLocation
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.credentials.ClearCredentialStateRequest
@@ -18,7 +23,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kenyang.R
 import com.example.kenyang.adapter.MenuAdapter
+import com.example.kenyang.converter.calculateDistances
 import com.example.kenyang.converter.sortListByDistance
+import com.example.kenyang.converter.sortListByRating
 import com.example.kenyang.data.dataclass.Menu
 import com.example.kenyang.data.local.OrderDatabase
 import com.example.kenyang.databinding.ActivityMainBinding
@@ -34,8 +41,12 @@ class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private var menus = makeList()
     private lateinit var auth: FirebaseAuth
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var menuAdapter: MenuAdapter
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,76 +82,66 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        val firstName = firebaseUser.displayName?.split(" ")?.get(0) ?: "User"
-        binding.tvUserFirstName.text = resources.getString(R.string.greeting_message, firstName)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        menuAdapter = MenuAdapter()
+        getCurrentLocation()
 
-        // Dapatkan lokasi terbaru
+        val firstName = firebaseUser.displayName?.split(" ")?.get(0) ?: "User"
+        binding.tvUserFirstName.text = resources.getString(R.string.greeting_message, firstName)
 
         binding.btnSignOut.setOnClickListener {
             signOut()
         }
 
-        val adapter = MenuAdapter()
-        val list = makeList()
-        val sortedByDistanceMenu = sortListByDistance(list)
-        adapter.submitList(sortedByDistanceMenu)
+        menuAdapter.submitList(sortListByDistance(menus))
 
-        getLastKnownLocation(list)
-
-        binding.rvRecommendation.adapter = adapter
+        binding.rvRecommendation.adapter = menuAdapter
         binding.rvRecommendation.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         val secondAdapter = MenuAdapter()
-        secondAdapter.submitList(list)
+        secondAdapter.submitList(sortListByRating(menus))
         binding.rvSecondRecommendation.adapter = secondAdapter
         binding.rvSecondRecommendation.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     }
 
-    private fun getLastKnownLocation(menus: List<Menu>) {
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun getCurrentLocation() {
         if (ActivityCompat.checkSelfPermission(
                 this,
-                android.Manifest.permission.ACCESS_FINE_LOCATION
+                Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
                 this,
-                android.Manifest.permission.ACCESS_COARSE_LOCATION
+                Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
-                LOCATION_PERMISSION_REQUEST_CODE
-            )
             return
         }
-
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location: Location? ->
-                // Got last known location. In some rare situations this can be null.
                 location?.let {
-                    val userLat = it.latitude
-                    val userLon = it.longitude
-
-                    // Setelah mendapatkan lokasi pengguna, hitung jarak
-                    calculateDistances(userLat, userLon, menus)
-                } ?: Toast.makeText(this, "Lokasi tidak tersedia", Toast.LENGTH_SHORT).show()
+                    updateMenuDistances(it)
+                }
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Lokasi tidak dapat diakses", Toast.LENGTH_SHORT).show()
             }
     }
 
-    private fun calculateDistances(userLat: Double, userLon: Double, menus: List<Menu>) {
-
-        for (menu in menus) {
-            val results = FloatArray(1)
-            Location.distanceBetween(
-                userLat, userLon,
-                menu.lat, menu.lon,
-                results
-            )
-            // Hasil dalam meter, kita ubah ke kilometer
-            val distanceInKm = results[0] / 1000
-            menu.distance = distanceInKm.toDouble()
+    @SuppressLint("NotifyDataSetChanged")
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun updateMenuDistances(currentLocation: Location) {
+        val updatedMenuList = menus.map { menu ->
+            val menuLocation = Location("").apply {
+                latitude = menu.lat
+                longitude = menu.lon
+            }
+            Log.d("Main", "location $menuLocation")
+            Log.d("Main", "current $currentLocation")
+            menu.copy(distance = currentLocation.distanceTo(menuLocation).toDouble())
         }
+        menuAdapter.notifyDataSetChanged()
+        menuAdapter.submitList(updatedMenuList)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

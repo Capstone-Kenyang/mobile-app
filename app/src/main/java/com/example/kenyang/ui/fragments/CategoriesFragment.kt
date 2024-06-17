@@ -1,20 +1,33 @@
 package com.example.kenyang.ui.fragments
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.pm.PackageManager
+import android.location.Location
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kenyang.R
 import com.example.kenyang.adapter.CategoriesAdapter
+import com.example.kenyang.adapter.MenuAdapter
 import com.example.kenyang.data.dataclass.Category
 import com.example.kenyang.data.dataclass.Menu
 import com.example.kenyang.databinding.FragmentCategoriesBinding
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 
 class CategoriesFragment : Fragment() {
 
     private lateinit var binding: FragmentCategoriesBinding
+    private var category = makeCategoryMenus()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,14 +39,13 @@ class CategoriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val adapter = CategoriesAdapter()
-        val list: List<Category> = makeCategoryList()
-        adapter.submitList(list)
+        adapter.submitList(category)
 
         binding.rvCategory.adapter = adapter
         binding.rvCategory.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
     }
 
-    private fun makeCategoryList(): List<Category> {
+    private fun makeCategoryMenus(): List<Category> {
         val menu1 = Menu(
             menuId = "MN001",
             imageId = R.drawable.a1,
@@ -45,7 +57,6 @@ class CategoriesFragment : Fragment() {
             lon = 104.742344,
             stock = 20,
             rating = 4.5,
-            distance = 2.0,
             price = 15000,
             expireDate = "30 Desember 2024"
         )
@@ -61,7 +72,6 @@ class CategoriesFragment : Fragment() {
             lon = 104.742776,
             stock = 15,
             rating = 4.2,
-            distance = 1.5,
             price = 18000,
             expireDate = "25 Desember 2024"
         )
@@ -77,7 +87,6 @@ class CategoriesFragment : Fragment() {
             lon = 104.748356,
             stock = 10,
             rating = 4.7,
-            distance = 3.0,
             price = 20000,
             expireDate = "20 Desember 2024"
         )
@@ -93,7 +102,6 @@ class CategoriesFragment : Fragment() {
             lon = 104.734656,
             stock = 8,
             rating = 4.9,
-            distance = 2.5,
             price = 25000,
             expireDate = "28 Desember 2024"
         )
@@ -109,7 +117,6 @@ class CategoriesFragment : Fragment() {
             lon = 104.737856,
             stock = 30,
             rating = 4.8,
-            distance = 1.2,
             price = 15000,
             expireDate = "15 Desember 2024"
         )
@@ -125,7 +132,6 @@ class CategoriesFragment : Fragment() {
             lon = 104.733445,
             stock = 12,
             rating = 4.3,
-            distance = 0.8,
             price = 22000,
             expireDate = "22 Desember 2024"
         )
@@ -141,7 +147,6 @@ class CategoriesFragment : Fragment() {
             lon = 104.747634,
             stock = 50,
             rating = 4.9,
-            distance = 0.5,
             price = 10000,
             expireDate = "18 Desember 2024"
         )
@@ -157,7 +162,6 @@ class CategoriesFragment : Fragment() {
             lon = 104.739524,
             stock = 20,
             rating = 4.6,
-            distance = 1.0,
             price = 12000,
             expireDate = "26 Desember 2024"
         )
@@ -173,7 +177,6 @@ class CategoriesFragment : Fragment() {
             lon = 104.741234,
             stock = 25,
             rating = 4.7,
-            distance = 0.9,
             price = 14000,
             expireDate = "27 Desember 2024"
         )
@@ -189,7 +192,6 @@ class CategoriesFragment : Fragment() {
             lon = 104.748964,
             stock = 15,
             rating = 4.5,
-            distance = 2.3,
             price = 13000,
             expireDate = "29 Desember 2024"
         )

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kenyang.R
+import com.example.kenyang.converter.toSingleDecimal
 import com.example.kenyang.data.dataclass.Menu
 import com.example.kenyang.databinding.ItemCategoryListBinding
 import com.example.kenyang.databinding.ItemMenuRecommendationBinding
@@ -19,12 +20,13 @@ class CategoryMenuAdapter : ListAdapter<Menu, CategoryMenuAdapter.MenuViewHolder
         fun bind(menu: Menu) {
             val locale = Locale("id", "ID")
             val formattedPrice = NumberFormat.getNumberInstance(locale).format(menu.price)
+            val distance = menu.distance.toSingleDecimal()
 
             itemBinding.ivImage.setImageResource(menu.imageId)
             itemBinding.tvMenu.text = menu.menu
             itemBinding.tvRestaurant.text = menu.restaurant
 
-            itemBinding.tvAdditionalInfo.text = itemView.context.resources.getString(R.string.additional_info, menu.rating.toString(), menu.stock.toString())
+            itemBinding.tvAdditionalInfo.text = itemView.context.resources.getString(R.string.additional_info, distance, menu.stock.toString())
             itemBinding.tvPrice.text = itemView.context.resources.getString(R.string.price, formattedPrice)
 
             itemView.setOnClickListener {

@@ -19,13 +19,14 @@ class MenuAdapter : ListAdapter<Menu, MenuAdapter.RecommendationViewHolder>(DIFF
         fun bind(menu: Menu) {
             val locale = Locale("id", "ID")
             val formattedPrice = NumberFormat.getNumberInstance(locale).format(menu.price)
+            val distance = menu.distance / 1000
 
             itemBinding.ivRecommendationImage.setImageResource(menu.imageId)
             itemBinding.tvMenu.text = menu.menu
             itemBinding.tvRestaurant.text = menu.restaurant
             itemBinding.tvStock.text = itemView.context.resources.getString(R.string.stock, menu.stock)
             itemBinding.tvRating.text = menu.rating.toString()
-            itemBinding.tvDistance.text = menu.distance.toSingleDecimal()
+            itemBinding.tvDistance.text = itemView.context.getString(R.string.distance, distance.toSingleDecimal())
             itemBinding.tvPrice.text = itemView.context.resources.getString(R.string.price, formattedPrice)
 
             itemView.setOnClickListener {

@@ -2,6 +2,7 @@ package com.example.kenyang.converter
 
 import android.content.ContentValues
 import android.content.Context
+import android.location.Location
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
@@ -75,4 +76,21 @@ fun sortListByRating(menus: List<Menu>): List<Menu> {
 
 fun Double.toSingleDecimal(): String {
     return String.format("%.1f", this)
+}
+
+fun calculateDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Float {
+    val result = FloatArray(1)
+    Location.distanceBetween(lat1, lon1, lat2, lon2, result)
+    return result[0] / 1000
+}
+
+fun calculateDistances(
+    currentLat: Double,
+    currentLon: Double,
+    items: List<Menu>
+): List<Menu> {
+    return items.map { item ->
+        val distance = calculateDistance(currentLat, currentLon, item.lat, item.lon)
+        item.copy(distance = distance.toDouble())
+    }
 }
