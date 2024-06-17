@@ -17,7 +17,7 @@ data class Menu(
     val lon: Double,
     val stock: Int,
     val rating: Double,
-    val distance: Double,
+    var distance: Double = 0.0,
     val price: Int,
     val expireDate: String,
 ) : Parcelable

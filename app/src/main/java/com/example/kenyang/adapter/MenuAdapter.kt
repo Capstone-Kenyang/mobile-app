@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kenyang.R
+import com.example.kenyang.converter.toSingleDecimal
 import com.example.kenyang.data.dataclass.Menu
 import com.example.kenyang.databinding.ItemMenuRecommendationBinding
 import com.example.kenyang.ui.fragments.MenuDetailFragment
@@ -24,7 +25,7 @@ class MenuAdapter : ListAdapter<Menu, MenuAdapter.RecommendationViewHolder>(DIFF
             itemBinding.tvRestaurant.text = menu.restaurant
             itemBinding.tvStock.text = itemView.context.resources.getString(R.string.stock, menu.stock)
             itemBinding.tvRating.text = menu.rating.toString()
-            itemBinding.tvDistance.text = menu.distance.toString()
+            itemBinding.tvDistance.text = menu.distance.toSingleDecimal()
             itemBinding.tvPrice.text = itemView.context.resources.getString(R.string.price, formattedPrice)
 
             itemView.setOnClickListener {

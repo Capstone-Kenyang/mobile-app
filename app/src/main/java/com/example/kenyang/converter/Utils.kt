@@ -72,3 +72,7 @@ fun sortListByDistance(menus: List<Menu>): List<Menu> {
 fun sortListByRating(menus: List<Menu>): List<Menu> {
     return menus.sortedByDescending { it.rating }
 }
+
+fun Double.toSingleDecimal(): String {
+    return String.format("%.1f", this)
+}
