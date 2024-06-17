@@ -79,5 +79,6 @@
     <string name="status_info_order_done">Order telah diterima user</string>
 
     <string name="category_image">Gambar Kategori</string>
+    <string name="highest_rating">Rating Tertinggi</string>
 
 </resources>
