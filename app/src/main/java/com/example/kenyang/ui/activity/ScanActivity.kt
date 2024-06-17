@@ -3,7 +3,7 @@ package com.example.kenyang.ui.activity
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -42,6 +42,14 @@ class ScanActivity : AppCompatActivity() {
             uploadImage(uri)
         }
 
+        binding.backButton.setOnClickListener {
+            finish()
+        }
+
+        scanViewModel.scanResult.observe(this) {
+            showResult(it)
+        }
+
     }
 
     private fun uploadImage(currentImageUri: Uri) {
@@ -59,14 +67,24 @@ class ScanActivity : AppCompatActivity() {
             )
 
             scanViewModel.upload(multipartBody)
-            scanViewModel.scanResult.observe(this) {
-                showToast(it)
-            }
         }
     }
 
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    private fun showResult(result: String) {
+        binding.btnPredict.visibility = View.INVISIBLE
+        binding.tvPredictResult.visibility = View.VISIBLE
+        binding.tvResultDescription.visibility = View.VISIBLE
+
+        binding.tvPredictResult.text = result
+        Log.d("Res", result)
+
+        val description = if (result.contains("fresh") || result.contains("Fresh")) {
+            "Kemungkinan aman dikonsumsi"
+        } else {
+            "Kemungkinan tidak aman dikonsumsi"
+        }
+
+        binding.tvResultDescription.text = description
     }
 
 }

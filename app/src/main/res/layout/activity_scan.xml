@@ -22,6 +22,7 @@
             android:background="@color/black">
             
             <ImageButton
+                android:id="@+id/back_button"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/baseline_arrow_back_24"
@@ -50,9 +51,9 @@
         app:layout_constraintTop_toBottomOf="@id/app_bar_layout"
         android:layout_marginTop="36dp"
         tools:src="@tools:sample/backgrounds/scenic"
-        android:scaleType="center" />
+        android:scaleType="fitXY" />
     
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_predict"
         style="@style/Button"
         android:layout_width="211dp"
@@ -70,26 +71,29 @@
         android:id="@+id/tv_predict_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/btn_predict"
         tools:text="Fresh Bread"
         android:textColor="@color/stone_50"
-        android:textSize="44sp"
+        android:textSize="36sp"
         android:visibility="invisible"
         tools:visibility="visible"
         android:fontFamily="@font/lato_black"
         android:textStyle="italic"
+        android:layout_marginTop="48dp"
+        app:layout_constraintTop_toBottomOf="@id/iv_image_result"
         app:layout_constraintStart_toStartOf="parent"
         android:textAlignment="center" />
 
     <TextView
+        android:id="@+id/tv_result_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Kemungkinan aman untuk dikonsumsi"
         android:textColor="@color/stone_50"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:visibility="invisible"
         tools:visibility="visible"
         android:fontFamily="@font/lato_regular"
+        android:layout_marginTop="6dp"
         app:layout_constraintTop_toBottomOf="@id/tv_predict_result"
         app:layout_constraintStart_toStartOf="parent"
         android:textAlignment="center" />
