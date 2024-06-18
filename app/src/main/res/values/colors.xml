@@ -9,7 +9,8 @@
     <color name="black_3">#FFD9D9D9</color>
     <color name="zinc_50">#FFFAFAFA</color>
     <color name="stone_50">#FFFAFAF9</color>
-    <color name="blue">#FF5508AA</color>
+<!--    <color name="blue">#FF5508AA</color>-->
+    <color name="blue">#FF4B2D96</color>
     <color name="orange">#FFFAA37B</color>
     <color name="neutral_500">#FF71717A</color>
     <color name="gray2">#5C5C5C</color>

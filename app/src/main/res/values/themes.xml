@@ -115,12 +115,12 @@
 
     <style name="Restaurant">
         <item name="android:textSize">8sp</item>
-        <item name="android:textColor">@color/black_2</item>
+        <item name="android:textColor">@color/neutral_600</item>
     </style>
 
     <style name="RatingColumn">
         <item name="android:textSize">10sp</item>
-        <item name="android:textColor">@color/black_4</item>
+        <item name="android:textColor">@color/black_2</item>
     </style>
 
     <style name="Price">

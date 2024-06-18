@@ -2,8 +2,10 @@ package com.example.kenyang.ui.activity
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Geocoder
 import android.location.Location
 import android.os.Build
 import android.os.Bundle
@@ -13,8 +15,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.location.LocationManagerCompat.getCurrentLocation
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.credentials.ClearCredentialStateRequest
@@ -23,7 +23,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kenyang.R
 import com.example.kenyang.ui.adapter.MenuAdapter
-import com.example.kenyang.converter.calculateDistances
 import com.example.kenyang.converter.sortListByDistance
 import com.example.kenyang.converter.sortListByRating
 import com.example.kenyang.data.dataclass.Menu
@@ -35,6 +34,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
@@ -123,6 +123,8 @@ class MainActivity : AppCompatActivity() {
             .addOnSuccessListener { location: Location? ->
                 location?.let {
                     updateMenuDistances(it)
+                    val locationAddress = getAddressFromLocation(location, this)
+                    binding.tvTagline.text = locationAddress
                 }
             }
             .addOnFailureListener {
@@ -144,6 +146,21 @@ class MainActivity : AppCompatActivity() {
         }
         menuAdapter.submitList(updatedMenuList)
         secondAdapter.submitList(updatedMenuList)
+    }
+
+    fun getAddressFromLocation(location: Location, context: Context): String {
+        val geocoder = Geocoder(context, Locale.getDefault())
+        val addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+
+        if (addresses!!.isNotEmpty()) {
+            val address = addresses[0]
+            val city = address.locality
+            val kecamatan = address.subLocality
+
+            return if (!kecamatan.isNullOrEmpty()) "$kecamatan, $city" else city
+        } else {
+            return resources.getString(R.string.tagline)
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
