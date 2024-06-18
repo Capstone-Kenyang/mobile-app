@@ -1,16 +1,16 @@
 package com.example.kenyang.ui.fragments
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.lifecycleScope
 import com.example.kenyang.R
 import com.example.kenyang.data.dataclass.Menu
@@ -21,8 +21,6 @@ import com.example.kenyang.ui.viewmodel.MenuDetailViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.launch
 import java.text.NumberFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 class MenuDetailFragment : BottomSheetDialogFragment() {
@@ -65,14 +63,13 @@ class MenuDetailFragment : BottomSheetDialogFragment() {
             binding.ivImageMenu.setImageResource(it.imageId)
             binding.tvMenu.text = it.menu
             binding.tvRestaurant.text = it.restaurant
-            binding.tvAddress.text= it.restaurantAddress
+            binding.tvAddress.text = it.restaurantAddress
             binding.tvExpire.text = resources.getString(R.string.expire_warning, date)
             binding.orderButton.text= resources.getString(R.string.order_now, formattedPrice)
         }
 
         binding.tvClickableCheckLocation.setOnClickListener {
-            dismiss()
-            navigateToMapsFragment(menu!!.lat, menu!!.lon)
+            navigateToMaps(menu!!.lat, menu!!.lon, menu!!.restaurant)
         }
 
 
@@ -124,12 +121,19 @@ class MenuDetailFragment : BottomSheetDialogFragment() {
     }
 
 
-    private fun navigateToMapsFragment(lat: Double, lon: Double) {
-        val fragment = MapsFragment.newInstance(lat, lon)
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.main_layout, fragment)
-            .addToBackStack(null)
-            .commit()
+    private fun navigateToMaps(lat: Double, lon: Double, restaurant: String) {
+        val label = restaurant
+        val uri = "geo:$lat,$lon?q=$lat,$lon($label)"
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+
+        intent.setPackage("com.google.android.apps.maps")
+
+        if (intent.resolveActivity(requireContext().packageManager) != null) {
+            startActivity(intent)
+        } else {
+            val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://maps.google.com/maps?q=$lat,$lon"))
+            startActivity(webIntent)
+        }
     }
 
     override fun onStart() {

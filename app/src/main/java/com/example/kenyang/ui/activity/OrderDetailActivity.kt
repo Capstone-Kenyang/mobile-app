@@ -78,10 +78,8 @@ class OrderDetailActivity : AppCompatActivity() {
             val uri = "geo:$lat,$lon?q=$lat,$lon($label)"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
 
-            // Mengecek apakah aplikasi Google Maps terinstal
             intent.setPackage("com.google.android.apps.maps")
 
-            // Jika Google Maps tidak terinstal, buka web browser
             if (intent.resolveActivity(packageManager) != null) {
                 startActivity(intent)
             } else {
