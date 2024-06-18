@@ -1,41 +1,26 @@
 package com.example.kenyang.ui.activity
 
-import ItemMenuAdapter
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.pm.PackageManager
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.location.Geocoder
 import android.location.Location
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.location.LocationManagerCompat.getCurrentLocation
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.kenyang.R
 import com.example.kenyang.ui.adapter.CategoryMenuAdapter
-import com.example.kenyang.ui.adapter.MenuAdapter
 import com.example.kenyang.converter.sortListByDistance
 import com.example.kenyang.converter.sortListByRating
 import com.example.kenyang.data.dataclass.Menu
-import com.example.kenyang.data.dataclass.Order
 import com.example.kenyang.databinding.ActivityCategoryListBinding
-import com.example.kenyang.ui.viewmodel.CategoryListViewModel
-import com.example.kenyang.ui.viewmodel.MenuItem
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import java.util.Locale
 
 class CategoryListActivity : AppCompatActivity() {
 

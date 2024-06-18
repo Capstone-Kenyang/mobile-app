@@ -96,7 +96,7 @@
     <style name="RecommendationImage">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">92dp</item>
-        <item name="android:scaleType">fitXY</item>
+        <item name="android:scaleType">fitCenter</item>
     </style>
 
     <style name="RecMenu">

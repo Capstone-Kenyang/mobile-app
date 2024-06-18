@@ -28,9 +28,11 @@ import com.example.kenyang.R
 import com.example.kenyang.ui.adapter.MenuAdapter
 import com.example.kenyang.converter.sortListByDistance
 import com.example.kenyang.converter.sortListByRating
+import com.example.kenyang.data.MenuRepository
 import com.example.kenyang.data.dataclass.Menu
 import com.example.kenyang.data.local.OrderDatabase
 import com.example.kenyang.databinding.ActivityMainBinding
+import com.example.kenyang.ui.fragments.MenuDetailFragment
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
@@ -46,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private var menus = makeList()
+    private var menus = MenuRepository().getAllMenus()
     private lateinit var auth: FirebaseAuth
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var menuAdapter: MenuAdapter
@@ -91,7 +93,6 @@ class MainActivity : AppCompatActivity() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         getMyLastLocation()
         menuAdapter = MenuAdapter()
-//        getCurrentLocation()
 
         val firstName = firebaseUser.displayName?.split(" ")?.get(0) ?: "User"
         binding.tvUserFirstName.text = resources.getString(R.string.greeting_message, firstName)
@@ -100,15 +101,20 @@ class MainActivity : AppCompatActivity() {
             signOut()
         }
 
-        menuAdapter.submitList(sortListByDistance(menus))
+        menuAdapter.submitList(sortListByDistance(menus.subList(0, 5)))
 
         binding.rvRecommendation.adapter = menuAdapter
         binding.rvRecommendation.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         secondAdapter = MenuAdapter()
-        secondAdapter.submitList(sortListByRating(menus))
+        secondAdapter.submitList(sortListByRating(menus.subList(0, 5)))
         binding.rvSecondRecommendation.adapter = secondAdapter
         binding.rvSecondRecommendation.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+        binding.poster.setOnClickListener {
+            val bottomSheet = MenuDetailFragment.newInstance(menus[5])
+            bottomSheet.show((this as AppCompatActivity).supportFragmentManager, MenuDetailFragment.TAG)
+        }
 
     }
 
@@ -163,31 +169,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun getCurrentLocation() {
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            return
-        }
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener { location: Location? ->
-                location?.let {
-                    updateMenuDistances(it)
-                    val locationAddress = getAddressFromLocation(location, this)
-                    binding.tvTagline.text = locationAddress
-                }
-            }
-            .addOnFailureListener {
-                Toast.makeText(this, "Lokasi tidak dapat diakses", Toast.LENGTH_SHORT).show()
-            }
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("NotifyDataSetChanged")
     private fun updateMenuDistances(currentLocation: Location) {
         val updatedMenuList = mutableListOf<Menu>()
@@ -202,8 +183,8 @@ class MainActivity : AppCompatActivity() {
             val updatedMenu = menu.copy(distance = currentLocation.distanceTo(menuLocation).toDouble())
             updatedMenuList.add(updatedMenu)
         }
-        menuAdapter.submitList(sortListByDistance(updatedMenuList))
-        secondAdapter.submitList(sortListByRating(updatedMenuList))
+        menuAdapter.submitList(sortListByDistance(updatedMenuList.subList(0, 5)))
+        secondAdapter.submitList(sortListByRating(updatedMenuList.subList(0, 5)))
     }
 
     private fun getAddressFromLocation(location: Location, context: Context): String {

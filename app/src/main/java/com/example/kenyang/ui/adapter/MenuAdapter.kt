@@ -51,6 +51,7 @@ class MenuAdapter : ListAdapter<Menu, MenuAdapter.RecommendationViewHolder>(DIFF
         holder.bind(recommendation)
     }
 
+
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Menu>() {
             override fun areItemsTheSame(

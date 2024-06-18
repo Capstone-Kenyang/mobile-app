@@ -15,7 +15,7 @@
             style="@style/ImageOrder"
             android:layout_width="69.81dp"
             android:layout_height="61.59dp"
-            android:scaleType="fitXY"
+            android:scaleType="fitCenter"
             android:background="@drawable/rounded_rect_4_dp"
             android:clipToOutline="true"
             app:layout_constraintStart_toStartOf="parent"

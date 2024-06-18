@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kenyang.R
+import com.example.kenyang.data.MenuRepository
 import com.example.kenyang.ui.adapter.CategoriesAdapter
 import com.example.kenyang.ui.adapter.MenuAdapter
 import com.example.kenyang.data.dataclass.Category
@@ -26,7 +27,7 @@ import com.google.android.gms.location.LocationServices
 class CategoriesFragment : Fragment() {
 
     private lateinit var binding: FragmentCategoriesBinding
-    private var category = makeCategoryMenus()
+    private var category = MenuRepository().getAllCategories()
 
 
     override fun onCreateView(

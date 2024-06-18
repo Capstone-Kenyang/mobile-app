@@ -28,7 +28,7 @@
                 android:id="@+id/iv_image"
                 android:layout_width="86dp"
                 android:layout_height="82dp"
-                android:scaleType="fitXY"
+                android:scaleType="fitCenter"
                 tools:src="@tools:sample/backgrounds/scenic"
                 android:background="@drawable/rounded_rect_4_dp"
                 android:clipToOutline="true"
