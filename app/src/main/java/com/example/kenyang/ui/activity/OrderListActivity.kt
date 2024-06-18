@@ -2,6 +2,7 @@ package com.example.kenyang.ui.activity
 
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
@@ -41,7 +42,11 @@ class OrderListActivity : AppCompatActivity() {
         }
 
         orderListViewModel.getAllOrder().observe(this@OrderListActivity) {
-            inflateRvLayout(it.reversed())
+            if (it.isEmpty()) {
+                binding.tvNoOrderYet.visibility = View.VISIBLE
+            } else {
+                inflateRvLayout(it.reversed())
+            }
         }
 
         binding.backButton.setOnClickListener {

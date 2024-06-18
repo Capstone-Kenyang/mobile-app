@@ -50,5 +50,6 @@
 
     <string name="category_image">Gambar Kategori</string>
     <string name="highest_rating">Rating Tertinggi</string>
+    <string name="no_order_yet">Yah, belum ada order...</string>
 
 </resources>
