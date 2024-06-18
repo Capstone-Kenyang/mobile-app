@@ -62,7 +62,7 @@
                 style="@style/CategoryLayout"
                 android:layout_width="match_parent"
                 android:name="com.example.kenyang.ui.fragments.CategoriesFragment"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/poster"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/poster" />
 

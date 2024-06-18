@@ -13,7 +13,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.core.content.res.ResourcesCompat
+import com.example.kenyang.R
 import com.example.kenyang.databinding.FragmentBottomNavBinding
 import com.example.kenyang.ui.activity.MainActivity
 import com.example.kenyang.ui.activity.OrderListActivity
@@ -55,6 +58,8 @@ class BottomNavFragment : Fragment() {
             val intent = Intent(requireContext(), OrderListActivity::class.java)
             startActivity(intent)
         }
+
+
         binding.buttonHome.setOnClickListener {
             val intent = Intent(requireContext(), MainActivity::class.java)
             startActivity(intent)

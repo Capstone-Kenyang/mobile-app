@@ -15,6 +15,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.credentials.ClearCredentialStateRequest
@@ -105,7 +106,9 @@ class MainActivity : AppCompatActivity() {
         secondAdapter.submitList(sortListByRating(menus))
         binding.rvSecondRecommendation.adapter = secondAdapter
         binding.rvSecondRecommendation.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
     }
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getCurrentLocation() {

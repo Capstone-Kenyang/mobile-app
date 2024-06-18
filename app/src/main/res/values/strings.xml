@@ -36,6 +36,7 @@
     <string name="restaurant_location">Cek lokasi</string>
     <string name="greeting_message">Hai, %1$s</string>
     <string name="additional_info">%1$s km | Tersedia %2$s</string>
+    <string name="rating_info">%1$s stars</string>
 
     <!--    Get Web Client ID from https://console.firebase.google.com/u/0/project/FirebaseProjectName/authentication/providers-->
     <string name="your_web_client_id">550158917347-4shatdip4c5bpp3c72qqhsp1pe29i2aj.apps.googleusercontent.com</string>
