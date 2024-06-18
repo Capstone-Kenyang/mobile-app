@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
@@ -82,9 +83,8 @@ class MenuDetailFragment : BottomSheetDialogFragment() {
 
                 viewLifecycleOwner.lifecycleScope.launch {
                     menuDetailViewModel.insertOrder(order)
-                    Log.d("TAGorder", order.toString())
                 }
-
+                makeToast("Order diterima")
                 dismiss()
             }
         }
@@ -98,7 +98,7 @@ class MenuDetailFragment : BottomSheetDialogFragment() {
                         Order(newUniqueId, menu!!, isDonation = true)
                     )
                 }
-
+                makeToast("Donasi diterima")
                 dismiss()
             }
         }
@@ -138,6 +138,10 @@ class MenuDetailFragment : BottomSheetDialogFragment() {
         // Atur background overlay
         dialog?.window?.setBackgroundDrawableResource(R.drawable.overlay_background)
 
+    }
+
+    private fun makeToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
 
     companion object {

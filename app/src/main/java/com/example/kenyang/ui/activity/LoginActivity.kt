@@ -13,6 +13,7 @@ import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
 import androidx.credentials.GetCredentialResponse
 import androidx.credentials.exceptions.GetCredentialException
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import com.example.kenyang.R
 import com.example.kenyang.databinding.ActivityLoginBinding
@@ -36,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
         ActivityLoginBinding.inflate(layoutInflater)
     }
     private lateinit var auth: FirebaseAuth
+    val isLoading = MutableLiveData<Boolean>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +50,7 @@ class LoginActivity : AppCompatActivity() {
             signIn()
 //            animateButton()
         }
+
     }
 
     private fun animateButton() {
@@ -78,8 +81,6 @@ class LoginActivity : AppCompatActivity() {
         val request = GetCredentialRequest.Builder()
             .addCredentialOption(googleIdOption)
             .build()
-
-        binding.progressBar.visibility = View.VISIBLE
 
         lifecycleScope.launch(Dispatchers.IO) {
             try {
