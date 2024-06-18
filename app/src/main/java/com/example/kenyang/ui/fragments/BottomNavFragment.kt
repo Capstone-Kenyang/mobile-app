@@ -27,21 +27,13 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [BottomNavFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class BottomNavFragment : Fragment() {
     private lateinit var binding: FragmentBottomNavBinding
 
     private var currentImageUri: Uri? = null
     private val timeStamp: String = SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(Date())
+    private var currentNavItem = R.id.menu_home
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,17 +45,45 @@ class BottomNavFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.buttonCamera.setOnClickListener { startCamera() }
-        binding.buttonOrder.setOnClickListener {
-            val intent = Intent(requireContext(), OrderListActivity::class.java)
-            startActivity(intent)
+
+        // Handle navigation item selection
+        binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.menu_home -> {
+                    // Replace with HomeFragment
+                    val intent = Intent(requireContext(), MainActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.menu_camera -> {
+                    // Launch Camera
+                    startCamera()
+                    true
+                }
+                R.id.menu_order -> {
+                    currentNavItem = R.id.menu_order
+                    val intent = Intent(requireContext(), OrderListActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                // Add other navigation items here
+                else -> false
+            }
         }
 
+//        binding.bottomNavigation.selectedItemId = currentNavItem
 
-        binding.buttonHome.setOnClickListener {
-            val intent = Intent(requireContext(), MainActivity::class.java)
-            startActivity(intent)
-        }
+//        binding.buttonCamera.setOnClickListener { startCamera() }
+//        binding.buttonOrder.setOnClickListener {
+//            val intent = Intent(requireContext(), OrderListActivity::class.java)
+//            startActivity(intent)
+//        }
+//
+//
+//        binding.buttonHome.setOnClickListener {
+//            val intent = Intent(requireContext(), MainActivity::class.java)
+//            startActivity(intent)
+//        }
     }
 
     private fun startCamera() {
@@ -75,7 +95,6 @@ class BottomNavFragment : Fragment() {
         ActivityResultContracts.TakePicture()
     ) { isSuccess ->
         if (isSuccess) {
-            // pergi ke page result
             val intent = Intent(requireContext(), ScanActivity::class.java)
             intent.putExtra("imageUri", currentImageUri.toString())
             startActivity(intent)
@@ -98,7 +117,7 @@ class BottomNavFragment : Fragment() {
         return uri ?: getImageUriForPreQ(context)
     }
 
-    private fun getImageUriForPreQ(context: Context): Uri {
+    fun getImageUriForPreQ(context: Context): Uri {
         val filesDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         val imageFile = File(filesDir, "/MyCamera/$timeStamp.jpg")
         if (imageFile.parentFile?.exists() == false) imageFile.parentFile?.mkdir()

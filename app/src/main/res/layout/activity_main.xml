@@ -5,7 +5,10 @@
     android:id="@+id/main_layout"
     android:background="@color/stone_50"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="0dp"
+    android:paddingBottom="0dp"
+    android:fitsSystemWindows="true"
     tools:context=".ui.activity.MainActivity">
 
     <ScrollView
@@ -127,8 +130,11 @@
         android:id="@+id/navbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="-50dp"
         android:name="com.example.kenyang.ui.fragments.BottomNavFragment"
-        android:layout_gravity="bottom" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
