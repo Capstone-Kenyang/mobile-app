@@ -20,13 +20,13 @@ class CategoryMenuAdapter : ListAdapter<Menu, CategoryMenuAdapter.MenuViewHolder
         fun bind(menu: Menu) {
             val locale = Locale("id", "ID")
             val formattedPrice = NumberFormat.getNumberInstance(locale).format(menu.price)
-            val distance = menu.distance.toSingleDecimal()
+            val distance = menu.distance / 1000
 
             itemBinding.ivImage.setImageResource(menu.imageId)
             itemBinding.tvMenu.text = menu.menu
             itemBinding.tvRestaurant.text = menu.restaurant
             itemBinding.tvRating.text = itemView.context.resources.getString(R.string.rating_info, menu.rating.toString())
-            itemBinding.tvAdditionalInfo.text = itemView.context.resources.getString(R.string.distance, distance)
+            itemBinding.tvAdditionalInfo.text = itemView.context.resources.getString(R.string.distance, distance.toSingleDecimal())
             itemBinding.tvStock.text = itemView.context.resources.getString(R.string.stock, menu.stock)
             itemBinding.tvPrice.text = itemView.context.resources.getString(R.string.price, formattedPrice)
 

@@ -82,6 +82,8 @@ class LoginActivity : AppCompatActivity() {
             .addCredentialOption(googleIdOption)
             .build()
 
+        binding.progressBar.visibility = View.VISIBLE
+
         lifecycleScope.launch(Dispatchers.IO) {
             try {
                 val result: GetCredentialResponse = credentialManager.getCredential(

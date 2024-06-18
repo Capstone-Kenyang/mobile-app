@@ -3,8 +3,10 @@ package com.example.kenyang.ui.activity
 import ItemMenuAdapter
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.pm.PackageManager
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.location.Geocoder
 import android.location.Location
 import android.os.Build
 import android.os.Bundle
@@ -17,6 +19,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.location.LocationManagerCompat.getCurrentLocation
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,6 +35,7 @@ import com.example.kenyang.ui.viewmodel.CategoryListViewModel
 import com.example.kenyang.ui.viewmodel.MenuItem
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import java.util.Locale
 
 class CategoryListActivity : AppCompatActivity() {
 
@@ -41,6 +45,7 @@ class CategoryListActivity : AppCompatActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var menuAdapter: CategoryMenuAdapter
     private lateinit var menus: List<Menu>
+    private lateinit var menusUpdated: List<Menu>
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,17 +61,20 @@ class CategoryListActivity : AppCompatActivity() {
         menus = menusArrayList!!.toList()
 
         val categoryName = intent.getStringExtra(EXTRA_NAME)
+        binding.tvCategoryName.text = categoryName
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        getCurrentLocation()
+        getMyLastLocation()
 
         menuAdapter = CategoryMenuAdapter()
-
-        val adapter = CategoryMenuAdapter()
-        binding.rvCategoryMenuList.adapter = adapter
+        binding.rvCategoryMenuList.adapter = menuAdapter
         binding.rvCategoryMenuList.layoutManager = LinearLayoutManager(this)
-        binding.tvCategoryName.text = categoryName
-        adapter.submitList(menus)
+
+//        val adapter = CategoryMenuAdapter()
+//        binding.rvCategoryMenuList.adapter = adapter
+//        binding.rvCategoryMenuList.layoutManager = LinearLayoutManager(this)
+//        binding.tvCategoryName.text = categoryName
+//        adapter.submitList(menus)
 
 
         binding.btnSortByRating.setOnClickListener {
@@ -78,7 +86,7 @@ class CategoryListActivity : AppCompatActivity() {
             binding.btnSortByDistance.backgroundTintList = ContextCompat.getColorStateList(this, R.color.black_3)
             binding.btnSortByDistance.typeface = ResourcesCompat.getFont(this, R.font.lato_regular)
 
-            adapter.submitList(sortListByRating(menus!!.toList()))
+            menuAdapter.submitList(sortListByRating(menusUpdated.toList()))
         }
 
         binding.btnSortByDistance.setOnClickListener {
@@ -90,7 +98,7 @@ class CategoryListActivity : AppCompatActivity() {
             binding.btnSortByRating.backgroundTintList = ContextCompat.getColorStateList(this, R.color.black_3)
             binding.btnSortByRating.typeface = ResourcesCompat.getFont(this, R.font.lato_regular)
 
-            adapter.submitList(sortListByDistance(menus!!.toList()))
+            menuAdapter.submitList(sortListByDistance(menusUpdated.toList()))
 
         }
 
@@ -100,55 +108,51 @@ class CategoryListActivity : AppCompatActivity() {
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun getCurrentLocation() {
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            return
-        }
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener { location: Location? ->
-                location?.let {
-                    updateMenuDistances(it)
-                }
-            }
-            .addOnFailureListener {
-                Toast.makeText(this, "Lokasi tidak dapat diakses", Toast.LENGTH_SHORT).show()
-            }
+    private fun checkPermission(permission: String): Boolean {
+        return ContextCompat.checkSelfPermission(
+            this,
+            permission
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     @RequiresApi(Build.VERSION_CODES.O)
+    private fun getMyLastLocation() {
+        if     (checkPermission(Manifest.permission.ACCESS_FINE_LOCATION) &&
+            checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+        ){
+            fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+                if (location != null) {
+                    updateMenuDistances(location)
+                } else {
+                    Toast.makeText(
+                        this,
+                        "Location is not found. Try Again",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        } else {
+            Toast.makeText(this, "Akses lokasi dibutuhkan", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    @SuppressLint("NotifyDataSetChanged")
     private fun updateMenuDistances(currentLocation: Location) {
-        val updatedListMenu = mutableListOf<Menu>()
-//        val updatedMenuList = menus.map { menu ->
-//            val menuLocation = Location("").apply {
-//                latitude = menu.lat
-//                longitude = menu.lon
-//            }
-//            Log.d("Cat", "location $menuLocation")
-//            Log.d("Cat", "current $currentLocation")
-//            menu.copy(distance = currentLocation.distanceTo(menuLocation).toDouble())
-//            val dis = currentLocation.distanceTo(menuLocation)
-//            Log.d("Cat", dis.toString())
-//        }
-        menus.forEach { menu ->
+        val updatedMenuList = mutableListOf<Menu>()
+        for (menu in menus) {
             val menuLocation = Location("").apply {
                 latitude = menu.lat
                 longitude = menu.lon
             }
-            val dis = currentLocation.distanceTo(menuLocation)
-            menu.distance = dis.toDouble()
-            updatedListMenu.add(menu)
+            Log.d("Main", "location $menuLocation")
+            Log.d("Main", "current $currentLocation")
+
+            val updatedMenu = menu.copy(distance = currentLocation.distanceTo(menuLocation).toDouble())
+            updatedMenuList.add(updatedMenu)
+            menusUpdated = updatedMenuList
         }
-        menuAdapter.submitList(updatedListMenu)
-        menuAdapter.notifyDataSetChanged()
+        menuAdapter.submitList(sortListByDistance(updatedMenuList))
     }
 
     companion object {

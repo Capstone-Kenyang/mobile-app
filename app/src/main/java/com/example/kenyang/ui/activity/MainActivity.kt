@@ -12,9 +12,11 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -87,8 +89,9 @@ class MainActivity : AppCompatActivity() {
 
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        getMyLastLocation()
         menuAdapter = MenuAdapter()
-        getCurrentLocation()
+//        getCurrentLocation()
 
         val firstName = firebaseUser.displayName?.split(" ")?.get(0) ?: "User"
         binding.tvUserFirstName.text = resources.getString(R.string.greeting_message, firstName)
@@ -109,6 +112,55 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { permissions ->
+            when {
+                permissions[Manifest.permission.ACCESS_FINE_LOCATION] ?: false -> {
+                    getMyLastLocation()
+                }
+                permissions[Manifest.permission.ACCESS_COARSE_LOCATION] ?: false -> {
+                    getMyLastLocation()
+                }
+                else -> {
+                }
+            }
+        }
+    private fun checkPermission(permission: String): Boolean {
+        return ContextCompat.checkSelfPermission(
+            this,
+            permission
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun getMyLastLocation() {
+        if     (checkPermission(Manifest.permission.ACCESS_FINE_LOCATION) &&
+            checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+        ){
+            fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+                if (location != null) {
+                    updateMenuDistances(location)
+                    val locationAddress = getAddressFromLocation(location, this)
+                    binding.tvTagline.text = locationAddress
+                } else {
+                    Toast.makeText(
+                        this,
+                        "Location is not found. Try Again",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        } else {
+            requestPermissionLauncher.launch(
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                )
+            )
+        }
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getCurrentLocation() {
@@ -135,23 +187,26 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     @RequiresApi(Build.VERSION_CODES.O)
+    @SuppressLint("NotifyDataSetChanged")
     private fun updateMenuDistances(currentLocation: Location) {
-        val updatedMenuList = menus.map { menu ->
+        val updatedMenuList = mutableListOf<Menu>()
+        for (menu in menus) {
             val menuLocation = Location("").apply {
                 latitude = menu.lat
                 longitude = menu.lon
             }
             Log.d("Main", "location $menuLocation")
             Log.d("Main", "current $currentLocation")
-            menu.copy(distance = currentLocation.distanceTo(menuLocation).toDouble())
+
+            val updatedMenu = menu.copy(distance = currentLocation.distanceTo(menuLocation).toDouble())
+            updatedMenuList.add(updatedMenu)
         }
-        menuAdapter.submitList(updatedMenuList)
-        secondAdapter.submitList(updatedMenuList)
+        menuAdapter.submitList(sortListByDistance(updatedMenuList))
+        secondAdapter.submitList(sortListByRating(updatedMenuList))
     }
 
-    fun getAddressFromLocation(location: Location, context: Context): String {
+    private fun getAddressFromLocation(location: Location, context: Context): String {
         val geocoder = Geocoder(context, Locale.getDefault())
         val addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1)
 
@@ -166,7 +221,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun makeList(): List<Menu> {
         return listOf(
             Menu(
