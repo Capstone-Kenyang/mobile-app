@@ -47,7 +47,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/tv_tagline"
                 android:background="@drawable/logout_structure"
                 android:padding="7dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginEnd="20dp"
                 android:contentDescription="@string/signout" />
 
             <com.google.android.material.card.MaterialCardView

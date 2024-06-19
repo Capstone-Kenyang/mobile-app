@@ -334,16 +334,19 @@ class MainActivity : AppCompatActivity() {
                     // Replace with HomeFragment
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
+                    item.setChecked(true)
                     true
                 }
                 R.id.menu_camera -> {
                     // Launch Camera
                     startCamera()
+                    item.setChecked(false)
                     true
                 }
                 R.id.menu_order -> {
                     val intent = Intent(this, OrderListActivity::class.java)
                     startActivity(intent)
+                    item.setChecked(true)
                     true
                 }
                 // Add other navigation items here
@@ -392,6 +395,11 @@ class MainActivity : AppCompatActivity() {
             "${BuildConfig.APPLICATION_ID}.fileprovider",
             imageFile
         )
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        binding.bottomNavigation.selectedItemId = R.id.menu_home
     }
 
 

@@ -14,10 +14,10 @@ class MenuRepository {
             restaurant = "Warung Mak Nyak",
             restaurantId = 101,
             restaurantAddress = "Jl. Mayor Salim Batubara No. 18, Palembang",
-            lat = -2.990934,
-            lon = 104.742344,
+            lat = -2.980461,
+            lon = 104.750594,
             stock = 20,
-            rating = 4.5,
+            rating = 4.1,
             price = 15000,
             expireDate = "30 Desember 2024"
         ),

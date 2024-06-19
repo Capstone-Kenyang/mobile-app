@@ -156,4 +156,9 @@ class OrderListActivity : AppCompatActivity() {
         )
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        binding.bottomNavigation.selectedItemId = R.id.menu_order
+    }
+
 }
