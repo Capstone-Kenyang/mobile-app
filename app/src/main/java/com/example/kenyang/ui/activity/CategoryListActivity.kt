@@ -49,9 +49,11 @@ class CategoryListActivity : AppCompatActivity() {
         binding.tvCategoryName.text = categoryName
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        getMyLastLocation()
 
         menuAdapter = CategoryMenuAdapter()
+        getMyLastLocation()
+
+        menuAdapter.submitList(menus)
         binding.rvCategoryMenuList.adapter = menuAdapter
         binding.rvCategoryMenuList.layoutManager = LinearLayoutManager(this)
 
@@ -102,7 +104,7 @@ class CategoryListActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getMyLastLocation() {
-        if     (checkPermission(Manifest.permission.ACCESS_FINE_LOCATION) &&
+        if     (checkPermission(Manifest.permission.ACCESS_FINE_LOCATION) ||
             checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
         ){
             fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
@@ -143,7 +145,5 @@ class CategoryListActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_MENUS = "extra-menus"
         const val EXTRA_NAME = "extra-name"
-        const val EXTRA_USER_LAT = "extra-user-lat"
-        const val EXTRA_USER_LON = "extra-user-lon"
     }
 }

@@ -31,7 +31,7 @@ class MenuRepository {
             lat = -2.974216,
             lon = 104.744869,
             stock = 15,
-            rating = 4.7,
+            rating = 4.2,
             price = 12000,
             expireDate = "25 Desember 2024"
         ),
@@ -45,7 +45,7 @@ class MenuRepository {
             lat = -2.992994,
             lon = 104.764918,
             stock = 30,
-            rating = 4.8,
+            rating = 4.7,
             price = 20000,
             expireDate = "20 Desember 2024"
         ),
@@ -59,7 +59,7 @@ class MenuRepository {
             lat = -2.970115,
             lon = 104.734191,
             stock = 10,
-            rating = 4.6,
+            rating = 3.0,
             price = 25000,
             expireDate = "15 Desember 2024"
         ),
@@ -73,7 +73,7 @@ class MenuRepository {
             lat = -2.980462,
             lon = 104.750594,
             stock = 7,
-            rating = 4.4,
+            rating = 4.6,
             price = 18000,
             expireDate = "10 Desember 2024"
         ),
@@ -101,7 +101,7 @@ class MenuRepository {
             lat = -2.980461,
             lon = 104.750594,
             stock = 14,
-            rating = 4.4,
+            rating = 4.1,
             price = 17000,
             expireDate = "10 Desember 2024"
         ),
@@ -115,7 +115,7 @@ class MenuRepository {
             lat = -2.980461,
             lon = 104.750594,
             stock = 15,
-            rating = 4.4,
+            rating = 4.3,
             price = 39000,
             expireDate = "10 Desember 2024"
         ),
@@ -129,7 +129,7 @@ class MenuRepository {
             lat = -2.980461,
             lon = 104.750594,
             stock = 25,
-            rating = 4.4,
+            rating = 4.9,
             price = 28000,
             expireDate = "10 Desember 2024"
         ),
@@ -143,7 +143,7 @@ class MenuRepository {
             lat = -2.980461,
             lon = 104.750594,
             stock = 13,
-            rating = 4.4,
+            rating = 4.8,
             price = 18000,
             expireDate = "10 Desember 2024"
         ),
@@ -157,7 +157,7 @@ class MenuRepository {
             lat = -2.980461,
             lon = 104.750594,
             stock = 11,
-            rating = 4.4,
+            rating = 4.0,
             price = 19000,
             expireDate = "10 Desember 2024"
         ),
@@ -171,7 +171,7 @@ class MenuRepository {
             lat = -2.980461,
             lon = 104.750594,
             stock = 10,
-            rating = 4.4,
+            rating = 4.1,
             price = 27000,
             expireDate = "10 Desember 2024"
         ),
@@ -199,7 +199,7 @@ class MenuRepository {
             lat = -2.980461,
             lon = 104.750594,
             stock = 8,
-            rating = 4.4,
+            rating = 3.7,
             price = 40000,
             expireDate = "10 Desember 2024"
         ),
@@ -213,7 +213,7 @@ class MenuRepository {
             lat = -2.980461,
             lon = 104.750594,
             stock = 20,
-            rating = 4.4,
+            rating = 3.8,
             price = 15000,
             expireDate = "10 Desember 2024"
         ),
@@ -227,7 +227,7 @@ class MenuRepository {
             lat = -2.980461,
             lon = 104.750594,
             stock = 11,
-            rating = 4.4,
+            rating = 4.9,
             price = 35000,
             expireDate = "10 Desember 2024"
         ),
@@ -241,7 +241,7 @@ class MenuRepository {
             lat = -2.980461,
             lon = 104.750594,
             stock = 25,
-            rating = 4.4,
+            rating = 4.6,
             price = 35000,
             expireDate = "10 Desember 2024"
         ),
@@ -255,7 +255,7 @@ class MenuRepository {
             lat = -2.980461,
             lon = 104.750594,
             stock = 14,
-            rating = 4.4,
+            rating = 4.0,
             price = 35000,
             expireDate = "10 Desember 2024"
         ),
@@ -269,7 +269,7 @@ class MenuRepository {
             lat = -2.980461,
             lon = 104.750594,
             stock = 18,
-            rating = 4.4,
+            rating = 4.5,
             price = 35000,
             expireDate = "10 Desember 2024"
         ),
@@ -283,9 +283,9 @@ class MenuRepository {
             lat = -2.980461,
             lon = 104.750594,
             stock = 45,
-            rating = 4.4,
-            price = 35000,
-            expireDate = "10 Desember 2024"
+            rating = 4.7,
+            price = 10000,
+            expireDate = "10 Desember 2024",
         ),
     )
 

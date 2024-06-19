@@ -1,6 +1,7 @@
 package com.example.kenyang.ui.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DiffUtil
@@ -28,6 +29,8 @@ class MenuAdapter : ListAdapter<Menu, MenuAdapter.RecommendationViewHolder>(DIFF
             itemBinding.tvRating.text = menu.rating.toString()
             itemBinding.tvDistance.text = itemView.context.getString(R.string.distance, distance.toSingleDecimal())
             itemBinding.tvPrice.text = itemView.context.resources.getString(R.string.price, formattedPrice)
+
+//            itemBinding.tvDistance.visibility = View.INVISIBLE
 
             itemView.setOnClickListener {
 //                onOrderClick(recommendation)
