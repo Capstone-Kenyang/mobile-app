@@ -80,6 +80,7 @@
         app:itemTextColor="@color/blue"
         app:itemIconTint="@color/blue"
         app:itemBackground="@color/stone_50"
+        app:itemActiveIndicatorStyle="@style/Widget.BottomNavigationView.ActiveIndicator"
         android:layout_marginBottom="-50dp"
         app:menu="@menu/bottom_navigation_menu"
         app:layout_constraintStart_toStartOf="parent"

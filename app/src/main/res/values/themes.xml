@@ -7,6 +7,10 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="Widget.BottomNavigationView.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/indigo_50</item>
+    </style>
+
     <style name="Text">
         <item name="android:fontFamily">@font/lato_regular</item>
     </style>
