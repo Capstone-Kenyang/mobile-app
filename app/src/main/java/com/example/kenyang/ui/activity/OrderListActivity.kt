@@ -10,6 +10,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -72,8 +73,17 @@ class OrderListActivity : AppCompatActivity() {
         }
 
         binding.backButton.setOnClickListener {
-            finish()
+            onBackPressedDispatcher.onBackPressed()
         }
+
+        onBackPressedDispatcher.addCallback(this, object: OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val intent = Intent(this@OrderListActivity, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        })
+
 
         binding.bottomNavigation.selectedItemId = R.id.menu_order
         handleBottomNavAction()
@@ -93,13 +103,11 @@ class OrderListActivity : AppCompatActivity() {
         binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_home -> {
-                    // Replace with HomeFragment
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     true
                 }
                 R.id.menu_camera -> {
-                    // Launch Camera
                     startCamera()
                     true
                 }
@@ -108,7 +116,6 @@ class OrderListActivity : AppCompatActivity() {
                     startActivity(intent)
                     true
                 }
-                // Add other navigation items here
                 else -> false
             }
         }
@@ -154,6 +161,12 @@ class OrderListActivity : AppCompatActivity() {
             "${BuildConfig.APPLICATION_ID}.fileprovider",
             imageFile
         )
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        super.onBackPressed()
+        onBackPressedDispatcher.onBackPressed()
     }
 
     override fun onRestart() {

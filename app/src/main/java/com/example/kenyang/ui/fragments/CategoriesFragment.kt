@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kenyang.R
 import com.example.kenyang.data.MenuRepository
@@ -43,7 +44,8 @@ class CategoriesFragment : Fragment() {
         adapter.submitList(category)
 
         binding.rvCategory.adapter = adapter
-        binding.rvCategory.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvCategory.layoutManager = GridLayoutManager(requireContext(), 4, GridLayoutManager.VERTICAL, false)
+//        binding.rvCategory.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
     }
 
     private fun makeCategoryMenus(): List<Category> {

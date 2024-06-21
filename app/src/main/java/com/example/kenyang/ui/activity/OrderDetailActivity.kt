@@ -117,6 +117,12 @@ class OrderDetailActivity : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
 
     companion object {
         const val EXTRA_ORDER = "extra-order"

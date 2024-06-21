@@ -34,6 +34,7 @@
     <string name="distance">%1$s km</string>
     <string name="total">Total:</string>
     <string name="restaurant_location">Cek lokasi</string>
+    <string name="address">Alamat</string>
     <string name="greeting_message">Hai, %1$s</string>
     <string name="additional_info">%1$s km | Tersedia %2$s</string>
     <string name="rating_info">%1$s stars</string>

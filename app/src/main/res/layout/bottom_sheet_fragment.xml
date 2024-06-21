@@ -42,9 +42,8 @@
         style="@style/DetailOrderTvLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/restaurant_location"
+        android:text="@string/address"
         android:fontFamily="@font/lato_bold"
-        android:clickable="true"
         app:layout_constraintStart_toStartOf="@id/tv_restaurant"
         app:layout_constraintTop_toBottomOf="@id/tv_restaurant"/>
 
@@ -90,6 +89,7 @@
         android:layout_height="wrap_content"
         android:text="@string/donation_clickable_text"
         android:fontFamily="@font/lato_bold"
+        android:textColor="@color/blue_800"
         android:clickable="true"
         android:layout_marginTop="11dp"
         app:layout_constraintStart_toStartOf="parent"

@@ -88,6 +88,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/restaurant_location"
+            android:fontFamily="@font/lato_bold"
+            android:textColor="@color/blue_800"
             android:clickable="true"
             android:focusable="true"
             app:layout_constraintStart_toStartOf="@id/tv_order_id"

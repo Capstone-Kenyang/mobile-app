@@ -68,10 +68,6 @@ class MenuDetailFragment : BottomSheetDialogFragment() {
             binding.orderButton.text= resources.getString(R.string.order_now, formattedPrice)
         }
 
-        binding.tvClickableCheckLocation.setOnClickListener {
-            navigateToMaps(menu!!.lat, menu!!.lon, menu!!.restaurant)
-        }
-
 
         menuDetailViewModel.getAllOrderIds().observe(viewLifecycleOwner) { ordersIds ->
             binding.orderButton.setOnClickListener {
@@ -120,28 +116,10 @@ class MenuDetailFragment : BottomSheetDialogFragment() {
         return (1..length).map { chars.random() }.joinToString("")
     }
 
-
-    private fun navigateToMaps(lat: Double, lon: Double, restaurant: String) {
-        val label = restaurant
-        val uri = "geo:$lat,$lon?q=$lat,$lon($label)"
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
-
-        intent.setPackage("com.google.android.apps.maps")
-
-        if (intent.resolveActivity(requireContext().packageManager) != null) {
-            startActivity(intent)
-        } else {
-            val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://maps.google.com/maps?q=$lat,$lon"))
-            startActivity(webIntent)
-        }
-    }
-
     override fun onStart() {
         super.onStart()
         dialog?.window?.setDimAmount(0.7f)
-        // Atur background overlay
         dialog?.window?.setBackgroundDrawableResource(R.drawable.overlay_background)
-
     }
 
     private fun makeToast(message: String) {
