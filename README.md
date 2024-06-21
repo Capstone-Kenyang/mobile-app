@@ -1,4 +1,4 @@
-# mobile-app
+# Kenyang (Mobile App)
 This is Kenyang mobile-app repository. Scroll to bottom of this markdown to see how to run this project.
 
 # Kenyang
